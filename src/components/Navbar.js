@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './navbar.css';
+import Services from '../services/services';
+
+const searchService = new Services();
 
 const Navbar = (props) => {
     
     const searchVid = (e) => {
         if (e.keyCode === 13) {
+            if (e.target.value.length < 1) {
+                alert('Input a search value!');
+                return;
+            }
             console.log('pressed enter');
             props.history.push('/video');
-            localStorage.setItem('searchValue', e.target.value)
+            console.log(searchService);
+            searchService.addSearch(e.target.value);
         }
     }
 
