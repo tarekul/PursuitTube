@@ -30,7 +30,13 @@ class Home extends Component {
             }
           })
         .then((data)=>{
-            console.log(data.data.items)
+            let arr = data.data.items
+            console.log(arr)
+            arr.map((e, i)=>{
+                console.log(e.id.videoId)
+                console.log(e.snippet.title)
+                console.log(e.snippet.thumbnails.high)
+            })
         })
         .catch(()=>{
 
