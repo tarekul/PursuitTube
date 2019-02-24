@@ -1,8 +1,5 @@
 class Services {
-    constructor() {
 
-    }
-    
     /*
         @func addUser
         @params userName {str}
