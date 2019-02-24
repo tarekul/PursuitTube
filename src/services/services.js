@@ -11,7 +11,7 @@ class Services {
     */
 
     addUser = userName => {
-        if (userName.length < 1 || typeof userName !== 'string' || userNamelength > 10) {
+        if (userName.length < 1 || typeof userName !== 'string' || userName.length > 10) {
             alert('Wrong Input.')
             return;
         }
@@ -75,7 +75,7 @@ class Services {
     */
 
     addFeed = (userName, feedName) => {
-        if (userName.length < 1 || typeof userName !== 'string' || userNamelength > 10) {
+        if (userName.length < 1 || typeof userName !== 'string' || userName.length > 10) {
             alert('Wrong Input.')
             return;
         }
