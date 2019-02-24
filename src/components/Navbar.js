@@ -14,19 +14,23 @@ const Navbar = (props) => {
                 return;
             }
             console.log('pressed enter');
-            props.history.push('/video');
-            console.log(searchService);
             searchService.addSearch(e.target.value);
+            props.history.push(`/search/${e.target.value}`);
+            console.log(searchService);
+            
         }
     }
 
     return (
         <div>
+            <div className='row'>
             <h1>PursuitTube</h1>
             <Link className='link' to='/'>Home</Link>
-            <Link className='link' to='/video'>Video</Link>
+            <Link className='link' to='/user'>User</Link>
             <Link className='link' to='/feedlist'>FeedList</Link>
             <input type='text' placeholder='Search...' onKeyDown={searchVid} ></input>
+            </div>
+  
         </div>
     )
 }

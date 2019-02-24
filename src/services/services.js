@@ -1,5 +1,4 @@
 class Services {
-
     /*
         @func addUser
         @params userName {str}
@@ -146,7 +145,7 @@ class Services {
     */
 
     getSearch = () => {
-        localStorage.getItem("search");
+        return localStorage.getItem("search");
     }
 }
 
