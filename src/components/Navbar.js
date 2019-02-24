@@ -14,7 +14,7 @@ const Navbar = (props) => {
                 return;
             }
             console.log('pressed enter');
-            props.history.push('/video');
+            props.history.push('/search');
             console.log(searchService);
             searchService.addSearch(e.target.value);
         }
