@@ -15,9 +15,10 @@ const Navbar = (props) => {
             }
             console.log('pressed enter');
             searchService.addSearch(e.target.value);
+            console.log(props.history);
             props.history.push(`/search/${e.target.value}`);
+            e.target.value = '';
             console.log(searchService);
-            
         }
     }
 

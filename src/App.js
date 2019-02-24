@@ -15,8 +15,6 @@ class App extends Component {
     return (
       <>
         <Navbar/>
-
-
         <Route path='/' exact component={Home}/>
         <Route path='/user' exact component={User}/>
         <Route path='/video/:video_id'  component={Video}/>
