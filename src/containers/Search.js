@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link, withRouter } from 'react-router-dom';
 import Services from '../services/services'
 
-const Search = ()=>{
-    const services = new Services
-    services.addSearch('ariana grande')
-    return <h1>{services.getSearch()}</h1>
+const Search = (props)=>{
+    console.log('here')
+    const services = new Services();
+    //services.addSearch('ariana grande')
+    console.log(props)
+    return <h1>{props.match.params.search_term}</h1>
 }
 
-export default Search
+export default withRouter(Search)
