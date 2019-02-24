@@ -1,16 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Home = (props)=>{
-    const clickHandler = () => {
-        props.changeState({video: 'syed'})
+class Home extends Component {
+
+    render() {
+      return (
+        <>
+          <h1>Home</h1>
+        </>
+      );
     }
-    
-    return (
-    <>
-    <h1>Home</h1>
-    <input type='text' onClick={clickHandler}></input>
-    </>
-    )
-}
+  }
 
 export default Home
