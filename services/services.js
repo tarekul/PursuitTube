@@ -7,7 +7,7 @@ class Services {
         @func addUser
         @params userName {str}
         @desc does some light validation
-              
+              adds user obj to the users arr of objs.
     */
 
     addUser = userName => {
@@ -25,6 +25,12 @@ class Services {
         localStorage.setItem('users', JSON.stringify(parsedUserArr));
     }
 
+    /*
+        @func getUser
+        @params userName {str}
+        @desc returns user that matches the userName param
+    */
+
     getUser = userName => {
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
@@ -34,6 +40,13 @@ class Services {
             }
         }
     }
+
+    /*
+        @func deleteUser
+        @params userName {str}
+        @desc deletes a user obj from the users arr of objs
+                matches the user to the userName param
+    */
 
     deleteUser = userName => {
         const userArrStr = localStorage.getItem('users');
@@ -54,6 +67,13 @@ class Services {
         localStorage.setItem('users', newUserArrStr);
     }
 
+    /*
+        @func addFeed
+        @params userName {str}, feedName {str}
+        @desc uses the userName param to match to the respective user obj
+                then adds the feed arr to the user obj
+    */
+
     addFeed = (userName, feedName) => {
         if (userName.length < 1 || typeof userName !== 'string' || userNamelength > 10) {
             alert('Wrong Input.')
@@ -70,7 +90,14 @@ class Services {
         localStorage.setItem('users', JSON.stringify(parsedUserArr));
     }
 
-    getFeed = (userName) => {
+    /*
+        @func getFeed
+        @params userName {str}
+        @desc takes the userName param to match it to the respective user obj
+                goes into the metioned obj and returns its feed arr
+    */
+
+    getFeed = userName => {
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
         for (let user of parsedUserArr) {
@@ -80,19 +107,46 @@ class Services {
         }
     }
 
-    addVideo = (id) => {
+    /*
+        @func addVideo
+        @params id {str}
+        @desc does some light validation
+                adds id string to the video key 
+    */
+
+    addVideo = id => {
         if (id.length < 1) alert('Video ID is too short.');
         localStorage.setItem('video', id);
     }
+
+    /*
+        @func getVideo
+        @params {null}
+        @desc takes to params and returns video id str
+    */
 
     getVideo = () => {
         localStorage.getItem('video');
     }
 
+    /*
+        @func addSearch
+        @params searchQuery {str}
+        @desc does some light validation
+                adds searchQuery str to the search key
+    */
+
     addSearch = searchQuery => {
         if (searchQuery.length < 1) alert('Search keyword is too short.');
         localStorage.setItem('search', searchQuery);
     }
+
+    /*
+        @func getSearch
+        @params {null}
+        @desc takes no params 
+                returns search str 
+    */
 
     getSearch = () => {
         localStorage.getItem("search");
