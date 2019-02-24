@@ -1,7 +1,4 @@
 class Services {
-    constructor() {
-
-    }
     
     /*
         @func addUser
@@ -149,7 +146,7 @@ class Services {
     */
 
     getSearch = () => {
-        localStorage.getItem("search");
+        return localStorage.getItem("search");
     }
 }
 
