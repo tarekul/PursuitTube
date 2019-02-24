@@ -11,13 +11,15 @@ import { Route } from 'react-router-dom'
 
 
 class App extends Component {
-
+  
   render() {
     return (
       <>
         <Navbar/>
+
         <Route path='/' exact component={Home}/>
         <Route path='/user' exact component={User}/>
+
         <Route path='/video' exact component={Video}/>
         <Route path='/search' exact component={Search}/>
         <Route path='/userlist' exact component={Userlist}/>
