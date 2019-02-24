@@ -10,11 +10,13 @@ class Home extends Component {
         super(props)    
         this.state = {
             name: "Mo",
-            feed:["Lol","Girl","Boy"]
+            feed: [{feedName:"Lol",
+                    nextPageToken: '',
+                    feedArray:[]}],
         }
     }
 
-    feedLoad = () => {
+    feedLoad = (query) => {
         axios({
             method: 'get',
             url: 'https://www.googleapis.com/youtube/v3/search',
@@ -25,17 +27,15 @@ class Home extends Component {
               type: 'video',
               videoEmbeddable: 'true',
               key: 'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI',
-              q: this.state.feed[0],
+              q: query,
               pageToken: ''
             }
           })
         .then((data)=>{
             let arr = data.data.items
-            console.log(arr)
+         
             arr.map((e, i)=>{
-                console.log(e.id.videoId)
-                console.log(e.snippet.title)
-                console.log(e.snippet.thumbnails.high)
+                this.setState({nextPageToken: data.data.nextPageToken})
             })
         })
         .catch(()=>{

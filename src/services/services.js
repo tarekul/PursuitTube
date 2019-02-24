@@ -13,14 +13,23 @@ class Services {
             alert('Wrong Input.')
             return;
         }
-
+        
         const userArrStr = localStorage.getItem('users');
-        const parsedUserArr = JSON.parse(userArrStr);
-        parsedUserArr.push({
-            name: `${userName}`,
-            feed: [],
-        });
-        localStorage.setItem('users', JSON.stringify(parsedUserArr));
+        
+        if (typeof userArrStr !== 'undefined') {
+            const parsedUserArr = JSON.parse(userArrStr);
+            parsedUserArr.push({
+                name: `${userName}`,
+                feed: [],
+            });
+            localStorage.setItem('users', JSON.stringify(parsedUserArr));
+        } else {
+            const userObj = {
+                name: `${userName}`,
+                feed: [],
+            }
+            localStorage.setItem('users', JSON.stringify([userObj]));
+        }
     }
 
     /*
