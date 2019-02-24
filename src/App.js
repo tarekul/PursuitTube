@@ -7,11 +7,11 @@ import Search from './containers/Search'
 import Userlist from './containers/UserList'
 import FeedList from './containers/FeedList'
 
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       video:'',
@@ -24,15 +24,18 @@ class App extends Component {
   }
   //use this function to update the class
   //param is object that has property to update and value
-  changeState = (obj) =>{
-    this.setState(obj)
+  changeState = (obj) => {
+    this.setState(obj, () => {
+      console.log(this.state)
+    });
   }
+
   
   render() {
     return (
       <>
-        <Route path='/' render={()=><Navbar/>} />
-        <Route path='/' exact render={()=><Home/>} />
+        <Navbar/>
+        <Route path='/' exact render={()=><Home changeState = {this.changeState}/> } />
         <Route path='/video' exact render={()=><Video/>} />
         <Route path='/search' exact render={()=><Search/>} />
         <Route path='/userlist' exact render={()=><Userlist/>} />
