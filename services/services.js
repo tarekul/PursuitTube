@@ -152,3 +152,5 @@ class Services {
         localStorage.getItem("search");
     }
 }
+
+export default Services;
