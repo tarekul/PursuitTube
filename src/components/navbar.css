@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
+.row {
+    display: inline-block;
+}
+
 .link {
     padding: 10px;
 }
