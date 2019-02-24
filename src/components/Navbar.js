@@ -1,17 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import './navbar.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    
+    const searchVid = (e) => {
+        if (e.keyCode === 13) {
+            console.log('pressed enter');
+            props.history.push('/video');
+            localStorage.setItem('searchValue', e.target.value)
+        }
+    }
+
     return (
-    <div>
-    <h1>Navbar</h1>
-    <Link to='/'>Home</Link>
-    <Link to='/video'>Video</Link>
-    <Link to='/search'>Search</Link>
-    <Link to='/userlist'>UserList</Link>
-    <Link to='feedlist'>FeedList</Link>
-    </div>
+        <div>
+            <h1>PursuitTube</h1>
+            <Link className='link' to='/'>Home</Link>
+            <Link className='link' to='/video'>Video</Link>
+            <Link className='link' to='/feedlist'>FeedList</Link>
+            <input type='text' placeholder='Search...' onKeyDown={searchVid} ></input>
+        </div>
     )
 }
 
-export default Navbar
+export default withRouter(Navbar);

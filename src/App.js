@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Navbar/>
+        <Navbar />
         <Route path='/' exact render={()=><Home changeState = {this.changeState}/> } />
         <Route path='/video' exact render={()=><Video/>} />
         <Route path='/search' exact render={()=><Search/>} />
