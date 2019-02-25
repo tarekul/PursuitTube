@@ -25,7 +25,7 @@ class Video extends Component {
             }
         })
             .then((data) => {
-                console.log(data);
+                console.log('DAAAATATATAT',data);
                 this.setState({ data: data.data.items[0].statistics }, () => console.log(this.state))
             })
             .catch(err => {
