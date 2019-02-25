@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Services from '../services/services'
 import axios from 'axios'
 
-class Search extends Component{
+class Search extends Component {
     constructor(props){
         super(props)
         this.state = {isLoading:true, data:[]}
@@ -41,10 +41,8 @@ class Search extends Component{
                 console.log(data)
         })
         
-        
         this.setState({isLoading:false,data:data})
         })
-
     }
     
     getVideoID = url =>{
