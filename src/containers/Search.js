@@ -9,7 +9,7 @@ class Search extends Component{
         this.state = {isLoading:true, data:[]}
     }
 
-    getVids = ()=>{
+    getVids = (query)=>{
         axios({ 
             method: 'get',
             url: 'https://www.googleapis.com/youtube/v3/search',
@@ -20,12 +20,12 @@ class Search extends Component{
                 type: 'video',
                 videoEmbeddable: 'true',
                 key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw',
-                q: this.props.match.params.search_term,
+                q: query,
                 pageToken: ''
             }
         })
         .then(response=>{
-            const {data} = this.state
+            const data = []
             
             response.data.items.forEach(vid=>{
                 let temp = {}
@@ -58,7 +58,18 @@ class Search extends Component{
     }
 
     componentDidMount(){
-        this.getVids()
+        console.log(this.props.match.params.search_term)
+        this.getVids(this.props.match.params.search_term)
+    }
+
+    // componentDidUpdate(prevprops){
+    //    console.log('updated', prevprops, this.props)
+    //    //if (prevprops.match.params.search_term !== this.props.match.params.search) this.getVids()
+    // }
+
+    componentWillReceiveProps(newProps){
+        console.log(newProps.match.params.search_term)
+        this.getVids(newProps.match.params.search_term)
     }
 
     render(){
