@@ -1,8 +1,11 @@
+// Dependencies
 import React from 'react';
 import Services from '../../services/services';
 
+// Global Variables
 const userServices = new Services();
 
+// React Component
 const CreateUserInput = props => {
     const clickHandler = e => {
        if (e.keyCode === 13) {
