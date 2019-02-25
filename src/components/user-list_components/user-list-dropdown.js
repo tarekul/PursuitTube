@@ -16,24 +16,41 @@ class UserListDropdown extends Component {
                     name: 'Default',
                     feed: ['Music'],
                 }
-            ]
+            ],
+            activeIndex: null,
+            activeSelection: false,
         }
+    }
+
+    userClickHandler = e => {
+        console.log(e.currentTarget.value)
+        this.setState({
+            activeIndex: e.currentTarget.value,
+            activeSelection: !this.state.activeSeletion,
+        });
     }
 
     render() {
         return(
-            <div className="card col-6" style={{width: "18rem"}}>
+            <div className="card" style={{width: "18rem"}}>
                 <ul className="list-group list-group-flush">
                   {
                     (userServices.getUsers()) ? 
                         userServices.getUsers().map((e, i) => {
                             return(
-                                <li className="list-group-item" key={i}>{e.name}</li>        
+                                <li className="list-group-item" key={i} value={i} onClick={this.userClickHandler}>
+                                    {e.name}
+                                    <button type="button" className="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </li>        
                             )      
                         }) :
                         this.state.users.map((e, i) => {
                             return(
-                                <li className="list-group-item" key={i}>{e.name}</li>
+                                <li className="list-group-item" key={i}>
+                                    {e.name}
+                                </li>
                             )
                         }) 
                   }
