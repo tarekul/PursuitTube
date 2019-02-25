@@ -13,8 +13,9 @@ class Services {
         }
         
         const userArrStr = localStorage.getItem('users');
+        console.log(userArrStr);
         
-        if (typeof userArrStr !== 'undefined') {
+        if (userArrStr) {
             const parsedUserArr = JSON.parse(userArrStr);
             parsedUserArr.push({
                 name: `${userName}`,
