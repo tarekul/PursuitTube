@@ -8,8 +8,8 @@ class Video extends Component {
         super(props)
 
         this.state = {
-            id: 'LH4Y1ZUUx2g',
-            link: `https://www.youtube.com/embed/LH4Y1ZUUx2g?autoplay=1&fs=1&origin=http://localhost:3000`,
+            id: props.match.params.video_id,
+            link: `https://www.youtube.com/embed/${props.match.params.video_id}?autoplay=1&fs=1&origin=http://localhost:3000`,
             data: {}
         }
     }
