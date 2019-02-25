@@ -19,7 +19,7 @@ class Services {
             const parsedUserArr = JSON.parse(userArrStr);
             parsedUserArr.push({
                 name: `${userName}`,
-                feed: [],
+                feed: ['Music'],
             });
             localStorage.setItem('users', JSON.stringify(parsedUserArr));
         } else {
@@ -45,6 +45,19 @@ class Services {
                 return user;
             }
         }
+    }
+
+    /*
+        @func getUsers
+        @params {null}
+        @desc returns all users that currently live on 
+                localstorage, takes no params
+    */
+
+    getUsers = () => {
+        const userArrStr = localStorage.getItem('users');
+        const parsedUserArr = JSON.parse(userArrStr);
+        return parsedUserArr;
     }
 
     /*

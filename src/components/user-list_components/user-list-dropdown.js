@@ -1,15 +1,46 @@
-import React from 'react';
+// Dependecies
+import React, {Component} from 'react';
+import Services from '../../services/services';
 
-const UserListDropdown = props => {
-    return (
-        <div className="card col-6" style={{width: "18rem"}}>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">Cras justo odio</li>
-              <li className="list-group-item">Dapibus ac facilisis in</li>
-              <li className="list-group-item">Vestibulum at eros</li>
-            </ul>
-        </div>
-    )
+// Global Variables
+const userServices = new Services();
+
+// React Component
+class UserListDropdown extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            users: [
+                {
+                    name: 'Default',
+                    feed: ['Music'],
+                }
+            ]
+        }
+    }
+
+    render() {
+        return(
+            <div className="card col-6" style={{width: "18rem"}}>
+                <ul className="list-group list-group-flush">
+                  {
+                    (userServices.getUsers()) ? 
+                        userServices.getUsers().map((e, i) => {
+                            return(
+                                <li className="list-group-item" key={i}>{e.name}</li>        
+                            )      
+                        }) :
+                        this.state.users.map((e, i) => {
+                            return(
+                                <li className="list-group-item" key={i}>{e.name}</li>
+                            )
+                        }) 
+                  }
+                </ul>
+            </div>
+        )
+    }
 }
 
 export default UserListDropdown;
