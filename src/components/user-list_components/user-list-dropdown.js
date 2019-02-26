@@ -23,11 +23,18 @@ class UserListDropdown extends Component {
     }
 
     userClickHandler = e => {
-        console.log(e.currentTarget.value)
         this.setState({
             activeIndex: e.currentTarget.value,
-            activeSelection: !this.state.activeSeletion,
+            activeSelection: !this.state.activeSelection,
         });
+    }
+
+    deleteUserClick = e => {
+        const button = e.target.parentNode
+        const li = button.parentNode
+        const innerArr = li.innerText.split('')
+        const name = innerArr.slice(0, innerArr.length - 2).join('')
+        userServices.deleteUser(name)
     }
 
     render() {
@@ -38,12 +45,19 @@ class UserListDropdown extends Component {
                     (userServices.getUsers()) ? 
                         userServices.getUsers().map((e, i) => {
                             return(
-                                <li className="list-group-item" key={i} value={i} onClick={this.userClickHandler}>
-                                    {e.name}
-                                    <button type="button" className="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </li>        
+                                (this.state.activeIndex === i) ? 
+                                    <li className="list-group-item bg-dark text-white" key={i} value={i} onClick={this.userClickHandler}>
+                                        {e.name}                                
+                                        <button type="button" className="close" aria-label="Close" onClick={this.deleteUserClick}>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </li> 
+                                :   <li className="list-group-item" key={i} value={i} onClick={this.userClickHandler}>
+                                        {e.name}
+                                        <button type="button" className="close" aria-label="Close" onClick={this.deleteUserClick}>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </li>     
                             )      
                         }) :
                         this.state.users.map((e, i) => {

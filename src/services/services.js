@@ -78,8 +78,8 @@ class Services {
                 break;
             }
         } 
-        
-        (userIndex >= 0) ? newUserArr = parsedUserArr.slice(userIndex + 1) 
+    
+        (userIndex <= 0) ? newUserArr = parsedUserArr.slice(userIndex + 1) 
             : newUserArr = parsedUserArr.slice(0, userIndex).concat(parsedUserArr.slice(userIndex + 1));
 
         const newUserArrStr = JSON.stringify(newUserArr);
