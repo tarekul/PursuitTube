@@ -8,7 +8,7 @@ class Search extends Component {
         super(props)
         this.state = {isLoading:true, data:[]}
     }
-
+// tareks key AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw
     getVids = (query)=>{
         axios({ 
             method: 'get',
@@ -19,7 +19,7 @@ class Search extends Component {
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
-                key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw',
+                key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',
                 q: query,
                 pageToken: ''
             }
@@ -47,10 +47,18 @@ class Search extends Component {
     
     getVideoID = url =>{
         this.state.data.forEach(vid =>{
-            if(vid.img === url) {
-                const services = new Services()
-                services.addVideo(vid.video_id)
-                localStorage.setItem('suggestions',JSON.stringify(this.state.data))
+            if (vid.img === url) {
+                const services = new Services();
+                services.addVideo(vid.video_id);
+                let obj = {vids: this.state.data};
+                let suggestions = JSON.parse(localStorage.getItem('suggestions'));
+                if (!suggestions) {
+                    localStorage.setItem('suggestions',JSON.stringify(obj))
+                }
+                else {
+                    suggestions.vids = suggestions.vids.concat(obj.vids)
+                    localStorage.setItem('suggestions',JSON.stringify(suggestions))
+                }
                 this.props.history.push(`/video/${vid.video_id}`);
             }
         })
@@ -71,7 +79,7 @@ class Search extends Component {
         this.getVids(newProps.match.params.search_term)
     }
 
-    render(){
+    render() {
         // props.match.params.search_term
         if(this.state.isLoading) return <h1>loading</h1>
         else 
