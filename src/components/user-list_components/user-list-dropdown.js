@@ -47,7 +47,7 @@ class UserListDropdown extends Component {
             <div className="card" style={{width: "18rem"}}>
                 <ul className="list-group list-group-flush">
                   {
-                    (userServices.getUsers()) ? 
+                    (userServices.getUsers() && userServices.getUsers().length >= 1) ? 
                         userServices.getUsers().map((e, i) => {
                             return(
                                 (this.state.activeIndex === i) ? 
