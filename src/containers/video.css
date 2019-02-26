@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.suggestion {
+    padding-bottom: 20px;
+}
+
+.suggestion:hover {
+    cursor: pointer;
+}
+
+.vid_title:hover {
+    color: darkblue;
+}

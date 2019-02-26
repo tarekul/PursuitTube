@@ -25,7 +25,7 @@ const Navbar = (props) => {
     return (
         <div>
             <div className='row navbar'>
-                <div className='col logo'>PursuitTube</div>
+                <Link className='col logo' to='/'>PursuitTube</Link>
                 <Link className='link col' to='/'>Home</Link>
                 <Link className='link col' to='/user'>User</Link>
                 <Link className='link col' to='/feedlist'>FeedList</Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
+import './video.css'
 
 
 class Video extends Component {
@@ -46,15 +47,17 @@ class Video extends Component {
         return vids.vids.map((e, i) => {
             return (
                 <div className='suggestion' key={i} id={e.video_id} onClick={e => { this.clickedSuggestion(e) }}>
-                    <h6 id={e.video_id}>{e.title}</h6>
-                    <img src={e.img} id={e.video_id}></img>
+                    {console.log(e.title)}
+                    <h6 className='vid_title' id={e.video_id}>{e.title}</h6>
+                    <img className='vid_img' src={e.img} id={e.video_id}></img>
                 </div>
             )
         })
     }
 
     clickedSuggestion = (e) => {
-        this.props.history.push(`/video/${e.target.id}`)
+        this.props.history.push(`/video/${e.target.id}`);
+        window.scrollTo(0,0)
     }
 
     componentDidMount(props) {
@@ -85,7 +88,7 @@ class Video extends Component {
                         </div>
                     </div>
                     <div className='col col-2'>
-                        <h4>Suggestions</h4>
+                        <h4>Recommended</h4>
                         <div className='suggestions'>
                             {this.suggestionList()}
                         </div>
