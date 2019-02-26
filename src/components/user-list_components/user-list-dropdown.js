@@ -30,11 +30,11 @@ class UserListDropdown extends Component {
     }
 
     deleteUserClick = e => {
-        const button = e.target.parentNode
-        const li = button.parentNode
-        const innerArr = li.innerText.split('')
-        const name = innerArr.slice(0, innerArr.length - 2).join('')
-        userServices.deleteUser(name)
+        const button = e.target.parentNode;
+        const li = button.parentNode;
+        const innerArr = li.innerText.split('');
+        const name = innerArr.slice(0, innerArr.length - 2).join('');
+        userServices.deleteUser(name);
     }
 
     render() {
