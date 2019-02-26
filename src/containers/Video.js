@@ -44,13 +44,15 @@ class Video extends Component {
         if (!localStorage.getItem('suggestions')) return;
         let vids = JSON.parse(localStorage.getItem('suggestions'));
         vids.vids = this.shuffleSuggestions(vids.vids);
-        vids.vids = vids.vids.slice(0, 9)
+        // vids.vids = vids.vids.slice(0, 20)
         return vids.vids.map((e, i) => {
             return (
                 <div className='suggestion' key={i} id={e.video_id} onClick={e => { this.clickedSuggestion(e) }}>
-                    {console.log(e.title)}
-                    <h6 className='vid_title' id={e.video_id}>{e.title}</h6>
+                    {console.log(e)}
+                    <div className='row'>
                     <img className='vid_img' src={e.img} id={e.video_id}></img>
+                    <div className='col col-5'><h6 className='vid_title' id={e.video_id}>{e.title}</h6></div>
+                    </div>
                 </div>
             )
         })
@@ -96,7 +98,7 @@ class Video extends Component {
         return (
             <>
                 <div className='row'>
-                    <div className='col col-8'>
+                    <div className='col vid_container'>
                         <iframe title='yt-video' type="text/html" width="711" height="400"
                             src={this.state.link} frameBorder="0"></iframe>
                         <h4>{this.state.snippet.title}</h4>
@@ -111,8 +113,8 @@ class Video extends Component {
                             <div className='col col-8'>{this.state.snippet.description}</div>
                         </div>
                     </div>
-                    <div className='col col-2'>
-                        <h4>Recommended</h4>
+                    <div className='col col-5 suggest_container'>
+                        <h5 className='header_rec'>Recommended For You</h5>
                         <div className='suggestions'>
                             {this.suggestionList()}
                         </div>
