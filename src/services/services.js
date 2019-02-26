@@ -172,7 +172,8 @@ class Services {
                 }
             }
         }
-        localStorage.setItem('users', JSON.stringify(parsedUserArr));
+        const newUserArr = JSON.stringify(parsedUserArr);
+        localStorage.setItem('users', newUserArr);
     }
 
     /*

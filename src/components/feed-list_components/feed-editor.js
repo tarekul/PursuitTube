@@ -19,8 +19,8 @@ class FeedEditor extends Component {
         const button = e.target.parentNode;
         const li = button.parentNode;
         const innerArr = li.innerText.split('');
-        const name = innerArr.slice(0, innerArr.length - 2).join('');
-        console.log(name)
+        const feedName = innerArr.slice(0, innerArr.length - 2).join('');
+        feedServices.deleteFeed(feedServices.getActiveUser(), feedName)
     }
 
     render() {
