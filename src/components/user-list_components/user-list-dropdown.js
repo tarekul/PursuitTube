@@ -19,6 +19,7 @@ class UserListDropdown extends Component {
             ],
             activeIndex: null,
             activeSelection: false,
+            activeUser: null,
         }
     }
 
@@ -26,8 +27,8 @@ class UserListDropdown extends Component {
         const innerArr = e.currentTarget.innerText.split('')
         const name = innerArr.slice(0, innerArr.length - 2).join('');
         userServices.activeUser(name);
-        // userServices.activeUser()
         this.setState({
+            activeUser: name,
             activeIndex: e.currentTarget.value,
             activeSelection: !this.state.activeSelection,
         });

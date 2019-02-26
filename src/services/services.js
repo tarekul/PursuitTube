@@ -66,11 +66,22 @@ class Services {
         @func activeUser
         @params userName {str}
         @desc simple func needed on the feed
-                to know what is the active user
+                to know what set the active user
     */
 
     activeUser = (userName) => {
         localStorage.setItem('activeUser', userName);
+    }
+
+    /*
+        @func getActiveUser
+        @params {null}
+        @desc simple func needed on the feed
+                it gives back a str w active user
+    */    
+
+    getActiveUser = () => {
+        return localStorage.getItem('activeUser');
     }
 
     /*
