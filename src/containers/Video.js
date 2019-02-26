@@ -27,7 +27,12 @@ class Video extends Component {
         })
             .then((data) => {
                 console.log('DATA', data);
-                this.setState({ stats: data.data.items[0].statistics, snippet: data.data.items[0].snippet }, () => console.log(this.state))
+                this.setState({
+                    link: `https://www.youtube.com/embed/${id}?autoplay=1&fs=1&origin=http://localhost:3000`,
+                    stats: data.data.items[0].statistics,
+                    snippet: data.data.items[0].snippet
+                },
+                    () => console.log(this.state))
             })
             .catch(err => {
                 console.log(err);
@@ -36,21 +41,19 @@ class Video extends Component {
 
     suggestionList = () => {
         if (!localStorage.getItem('suggestions')) return;
-        console.log('HELLO', JSON.parse(localStorage.getItem('suggestions')));
         let vids = JSON.parse(localStorage.getItem('suggestions'));
-        vids.vids = vids.vids.slice(0,9)
+        vids.vids = vids.vids.slice(0, 9)
         return vids.vids.map((e, i) => {
             return (
-                    <div className='suggestion' key={i} id={e.video_id} onClick={e=>{this.clickedSuggestion(e)}}>
-                        <h6 id={e.video_id}>{e.title}</h6>
-                        <img src={e.img} id={e.video_id}></img>
-                    </div>
+                <div className='suggestion' key={i} id={e.video_id} onClick={e => { this.clickedSuggestion(e) }}>
+                    <h6 id={e.video_id}>{e.title}</h6>
+                    <img src={e.img} id={e.video_id}></img>
+                </div>
             )
         })
     }
 
     clickedSuggestion = (e) => {
-        console.log('clicked a suggestion', e.target.id);
         this.props.history.push(`/video/${e.target.id}`)
     }
 
@@ -59,9 +62,7 @@ class Video extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('OCCURERED', newProps)
-      console.log(newProps.match.params.video_id)
-      this.getData(newProps.match.params.video_id)
+        this.getData(newProps.match.params.video_id)
     }
 
     render() {
@@ -71,7 +72,7 @@ class Video extends Component {
                     <div className='col col-8'>
                         <iframe title='yt-video' type="text/html" width="711" height="400"
                             src={this.state.link} frameBorder="0"></iframe>
-                            <h4>{this.state.snippet.title}</h4>
+                        <h4>{this.state.snippet.title}</h4>
                         <div className='row'>
                             <div className='col col-2'><h5>{this.state.snippet.channelTitle}</h5></div>
                             <div className='col col-2'>Views: {this.state.stats.viewCount}</div>
@@ -83,11 +84,10 @@ class Video extends Component {
                             <div className='col col-8'>{this.state.snippet.description}</div>
                         </div>
                     </div>
-
                     <div className='col col-2'>
                         <h4>Suggestions</h4>
-                        <div className='suggestions'> 
-                        {this.suggestionList()}
+                        <div className='suggestions'>
+                            {this.suggestionList()}
                         </div>
                     </div>
                 </div>
