@@ -1,8 +1,11 @@
+// Dependencies
 import React, {Component} from 'react';
 import Services from '../../services/services';
 
+// Global Variables
 const feedServices = new Services();
 
+// React Component
 class FeedEditor extends Component {
     constructor(props) {
         super(props);

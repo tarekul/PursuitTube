@@ -1,9 +1,11 @@
+// Dependencies
 import React, {Component} from 'react'
 import CreateListTitle from '../components/feed-list_components/create-list-title';
 import ExploreListFeed from '../components/feed-list_components/explore-list-title';
 import AddFeed from '../components/feed-list_components/add-feed';
 import FeedEditor from '../components/feed-list_components/feed-editor';
 
+// React Component
 class FeedList extends Component {
     constructor(props) {
         super(props);

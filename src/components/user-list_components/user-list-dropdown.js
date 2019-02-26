@@ -53,14 +53,14 @@ class UserListDropdown extends Component {
                                 (this.state.activeIndex === i) ? 
                                     <li className="list-group-item bg-dark text-white" key={i} value={i} onClick={this.userClickHandler}>
                                         {e.name}                                
-                                        <button type="button" className="close" aria-label="Close" onClick={this.deleteUserClick}>
-                                            <span aria-hidden="true">&times;</span>
+                                        <button type="button" className="close" aria-label="Close">
+                                            <span aria-hidden="true" onClick={this.deleteUserClick}>&times;</span>
                                         </button>
                                     </li> 
                                 :   <li className="list-group-item" key={i} value={i} onClick={this.userClickHandler}>
                                         {e.name}
-                                        <button type="button" className="close" aria-label="Close" onClick={this.deleteUserClick}>
-                                            <span aria-hidden="true">&times;</span>
+                                        <button type="button" className="close" aria-label="Close">
+                                            <span aria-hidden="true" onClick={this.deleteUserClick}>&times;</span>
                                         </button>
                                     </li>     
                             )      
