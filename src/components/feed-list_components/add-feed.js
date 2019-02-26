@@ -7,7 +7,8 @@ const AddFeed = props => {
     const clickHandler = e => {
         if (e.keyCode === 13) {
             feedServices.addFeed(feedServices.getActiveUser(), e.target.value);
-            e.target.value = '';
+            props.updateUserFeed(e.target.value);
+            e.target.value = ''
         }
     }
 
