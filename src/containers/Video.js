@@ -43,6 +43,7 @@ class Video extends Component {
     suggestionList = () => {
         if (!localStorage.getItem('suggestions')) return;
         let vids = JSON.parse(localStorage.getItem('suggestions'));
+        vids.vids = this.shuffleSuggestions(vids.vids);
         vids.vids = vids.vids.slice(0, 9)
         return vids.vids.map((e, i) => {
             return (
@@ -59,6 +60,29 @@ class Video extends Component {
         this.props.history.push(`/video/${e.target.id}`);
         window.scrollTo(0,0)
     }
+    
+    shuffleSuggestions = (array) => {
+            let currentIndex = array.length
+              , temporaryValue
+              , randomIndex
+              ;
+        
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+        
+              // Pick a remaining element...
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex -= 1;
+        
+              // And swap it with the current element.
+              temporaryValue = array[currentIndex];
+              array[currentIndex] = array[randomIndex];
+              array[randomIndex] = temporaryValue;
+            }
+        
+            return array;
+          }
+
 
     componentDidMount(props) {
         this.getData()
