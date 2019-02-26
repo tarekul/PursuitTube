@@ -75,9 +75,8 @@ class Search extends Component {
         if(this.state.isLoading) return <h1>loading</h1>
         else 
             // <h3>Search results for BLANK</h3>
-            return this.state.data.map(vid=>{
-                return <>
-                <div className='row'>
+            return this.state.data.map((vid, i)=>{
+                return <div className='row' key={i}>
                     <div className='col'>
                         <img src={vid.img} onClick={e=>{this.getVideoID(e.target.src)}} />
                     </div>
@@ -86,7 +85,6 @@ class Search extends Component {
                         <p>{vid.channel_title}</p>
                     </div>
                 </div>
-                </>
             })
                         
                     
