@@ -10,13 +10,46 @@ class Home extends Component {
         super(props)    
         this.state = {
             name: "Mo",
-            feed: [{feedName:"Lol",
-                    nextPageToken: '',
-                    feedArray:[]}],
+            feed: [{
+                feedName: 'lol',
+                nextPageToken: '',
+                videoInfo: [{
+                    title: '',
+                    photo: '',
+                    id: '',
+                    channelName: '',
+                    timePost: ''
+                }]
+            },
+            {feedName: 'girl',
+            nextPageToken: '',
+            videoInfo: [{
+                title: '',
+                photo: '',
+                id: ''
+                }]
+            },
+            {feedName: 'boy',
+            nextPageToken: '',
+            videoInfo: [{
+                title: '',
+                photo: '',
+                id: ''
+                }]
+            },
+            {feedName: 'Messi',
+            nextPageToken: '',
+            videoInfo: [{
+                title: '',
+                photo: '',
+                id: ''
+                }]
+            }
+          ],
         }
     }
 
-    feedLoad = (query) => {
+    feedLoad = (query, i) => {
         axios({
             method: 'get',
             url: 'https://www.googleapis.com/youtube/v3/search',
@@ -32,11 +65,16 @@ class Home extends Component {
             }
           })
         .then((data)=>{
-            let arr = data.data.items
-         
-            arr.map((e, i)=>{
-                this.setState({nextPageToken: data.data.nextPageToken})
+            let copiedFeed = [...this.state.feed]
+            copiedFeed[i].feedName = query
+            copiedFeed[i].nextPageToken = data.data.nextPageToken
+            copiedFeed[i].videoInfo = data.data.items.map((e)=>{
+                return {title:e.snippet.title,photo:e.snippet.thumbnails.high.url,id:e.id.videoId}
             })
+            this.setState({feed: copiedFeed})
+        })
+        .then(()=>{
+            // console.log(this.state.feed[i])
         })
         .catch(()=>{
 
@@ -44,7 +82,9 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        this.feedLoad()
+        this.state.feed.map((e, i)=>{
+           return this.feedLoad(e.feedName, i)
+        })
     }
 
     render() {
@@ -52,7 +92,10 @@ class Home extends Component {
         <>
           <Header name={this.state.name}/>
           <Feedlist feed={this.state.feed}/>
-          <Feedbar />
+          {this.state.feed.map((feed, i) => {
+            return <Feedbar key={i} feed={feed} feedLoad={this.feedLoad}/>
+          })}
+          
         </>
       );
     }
