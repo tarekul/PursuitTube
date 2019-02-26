@@ -40,17 +40,24 @@ class Search extends Component {
                 data.push(temp)
                 console.log(data)
         })
-        
         this.setState({isLoading:false,data:data})
         })
     }
     
     getVideoID = url =>{
         this.state.data.forEach(vid =>{
-            if(vid.img === url) {
-                const services = new Services()
-                services.addVideo(vid.video_id)
-                localStorage.setItem('suggestions',JSON.stringify(this.state.data))
+            if (vid.img === url) {
+                const services = new Services();
+                services.addVideo(vid.video_id);
+                let obj = {vids: this.state.data};
+                let suggestions = JSON.parse(localStorage.getItem('suggestions'));
+                if (!suggestions) {
+                    localStorage.setItem('suggestions',JSON.stringify(obj))
+                }
+                else {
+                    suggestions.vids = suggestions.vids.concat(obj.vids)
+                    localStorage.setItem('suggestions',JSON.stringify(suggestions))
+                }
                 this.props.history.push(`/video/${vid.video_id}`);
             }
         })
@@ -71,7 +78,7 @@ class Search extends Component {
         this.getVids(newProps.match.params.search_term)
     }
 
-    render(){
+    render() {
         // props.match.params.search_term
         if(this.state.isLoading) return <h1>loading</h1>
         else 
@@ -87,10 +94,7 @@ class Search extends Component {
                     </div>
                 </div>
             })
-                        
-                    
-    }
-    
+    }   
 }
 
 

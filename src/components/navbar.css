@@ -10,6 +10,10 @@
 .navbar {
     padding: 20px;
     border-bottom: solid lightgrey .5px;
+    position: fixed;
+    top: 0px;
+    z-index: 10000;
+    width: 100%;
 }
 
 .logo {
@@ -18,3 +22,7 @@
     font-weight: bold;
 }
 
+.suggestions {
+    max-height: 600px;
+    overflow: scroll;
+}
