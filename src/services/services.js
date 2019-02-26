@@ -63,6 +63,28 @@ class Services {
     }
 
     /*
+        @func activeUser
+        @params userName {str}
+        @desc simple func needed on the feed
+                to know what set the active user
+    */
+
+    activeUser = (userName) => {
+        localStorage.setItem('activeUser', userName);
+    }
+
+    /*
+        @func getActiveUser
+        @params {null}
+        @desc simple func needed on the feed
+                it gives back a str w active user
+    */    
+
+    getActiveUser = () => {
+        return localStorage.getItem('activeUser');
+    }
+
+    /*
         @func deleteUser
         @params userName {str}
         @desc deletes a user obj from the users arr of objs
@@ -126,6 +148,37 @@ class Services {
                 return user.feed;
             }
         }
+    }
+
+    /*
+        @func deleteFeed
+        @params userName {str}, feedName {str}
+        @desc identifies user and deletes specified feed
+    */
+
+    deleteFeed = (userName, feedName) => {
+        const userArrStr = localStorage.getItem('users');
+        const parsedUserArr = JSON.parse(userArrStr);
+        let newFeedArr = [];
+        console.log(userArrStr)
+        console.log(parsedUserArr)
+        console.log(userName)
+        console.log(feedName)
+        console.log(newFeedArr);
+        for (let user of parsedUserArr) {
+            if (user.name === userName) {
+                const indexToDelete = user.feed.indexOf(feedName);
+                if (indexToDelete === 0) {
+                    newFeedArr = user.feed.slice(indexToDelete + 1);
+                    user.feed = newFeedArr;
+                } else {
+                    newFeedArr = user.feed.slice(0, indexToDelete).concat(user.feed.slice(indexToDelete + 1));
+                    user.feed = newFeedArr;
+                }
+            }
+        }
+        const newUserArr = JSON.stringify(parsedUserArr);
+        localStorage.setItem('users', newUserArr);
     }
 
     /*

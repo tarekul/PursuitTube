@@ -6,7 +6,6 @@ const CreateUserTitle = props => {
             <div className='col col-6'>
                   <h3>Create a new User</h3>
             </div>
-          
         </>
     )
 }
