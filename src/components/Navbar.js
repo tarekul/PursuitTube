@@ -6,7 +6,7 @@ import Services from '../services/services';
 const searchService = new Services();
 
 const Navbar = (props) => {
-    
+
     const searchVid = (e) => {
         if (e.keyCode === 13) {
             if (e.target.value.length < 1) {
@@ -24,16 +24,29 @@ const Navbar = (props) => {
 
     return (
         <div>
-            <div className='row'>
-            <h1>PursuitTube</h1>
-            <Link className='link' to='/'>Home</Link>
-            <Link className='link' to='/user'>User</Link>
-            <Link className='link' to='/feedlist'>FeedList</Link>
-            <input type='text' placeholder='Search...' onKeyDown={searchVid} ></input>
+            <div className='row navbar'>
+                <div className='col logo'>PursuitTube</div>
+                <Link className='link col' to='/'>Home</Link>
+                <Link className='link col' to='/user'>User</Link>
+                <Link className='link col' to='/feedlist'>FeedList</Link>
+                <div className='col col-4'>
+                <nav className="navbar navbar-light bg-light">
+  <form className="form-inline">
+    <input className="form-control mr-sm-2" type="search" placeholder="Search.." aria-label="Search" onKeyDown={searchVid}/>
+    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+                </div>
             </div>
-  
+
+
+
         </div>
     )
 }
 
 export default withRouter(Navbar);
+
+
+
+

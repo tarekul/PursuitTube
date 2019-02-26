@@ -15,12 +15,13 @@ class Services {
         }
         
         const userArrStr = localStorage.getItem('users');
+        console.log(userArrStr);
         
-        if (typeof userArrStr !== 'undefined') {
+        if (userArrStr) {
             const parsedUserArr = JSON.parse(userArrStr);
             parsedUserArr.push({
                 name: `${userName}`,
-                feed: [],
+                feed: ['Music'],
             });
             localStorage.setItem('users', JSON.stringify(parsedUserArr));
         } else {
@@ -49,6 +50,19 @@ class Services {
     }
 
     /*
+        @func getUsers
+        @params {null}
+        @desc returns all users that currently live on 
+                localstorage, takes no params
+    */
+
+    getUsers = () => {
+        const userArrStr = localStorage.getItem('users');
+        const parsedUserArr = JSON.parse(userArrStr);
+        return parsedUserArr;
+    }
+
+    /*
         @func deleteUser
         @params userName {str}
         @desc deletes a user obj from the users arr of objs
@@ -66,8 +80,8 @@ class Services {
                 break;
             }
         } 
-        
-        (userIndex >= 0) ? newUserArr = parsedUserArr.slice(userIndex + 1) 
+    
+        (userIndex <= 0) ? newUserArr = parsedUserArr.slice(userIndex + 1) 
             : newUserArr = parsedUserArr.slice(0, userIndex).concat(parsedUserArr.slice(userIndex + 1));
 
         const newUserArrStr = JSON.stringify(newUserArr);

@@ -1,3 +1,20 @@
+* {
+    box-sizing: border-box;
+}
 .link {
     padding: 10px;
+    color: darkblue;
+    font-size: 1rem;
 }
+
+.navbar {
+    padding: 20px;
+    border-bottom: solid lightgrey .5px;
+}
+
+.logo {
+    color: darkblue;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+

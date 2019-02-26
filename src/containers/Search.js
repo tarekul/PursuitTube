@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Services from '../services/services'
 import axios from 'axios'
 
-class Search extends Component{
+class Search extends Component {
     constructor(props){
         super(props)
         this.state = {isLoading:true, data:[]}
@@ -41,10 +41,8 @@ class Search extends Component{
                 console.log(data)
         })
         
-        
         this.setState({isLoading:false,data:data})
         })
-
     }
     
     getVideoID = url =>{
@@ -78,9 +76,8 @@ class Search extends Component{
         if(this.state.isLoading) return <h1>loading</h1>
         else 
             // <h3>Search results for BLANK</h3>
-            return this.state.data.map(vid=>{
-                return <>
-                <div className='row'>
+            return this.state.data.map((vid, i)=>{
+                return <div className='row' key={i}>
                     <div className='col'>
                         <img src={vid.img} onClick={e=>{this.getVideoID(e.target.src)}} />
                     </div>
@@ -89,7 +86,6 @@ class Search extends Component{
                         <p>{vid.channel_title}</p>
                     </div>
                 </div>
-                </>
             })
                         
                     
