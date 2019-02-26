@@ -14,8 +14,10 @@ class FeedList extends Component {
     }
 
     updateUserFeed = (feedName) => {
+        const newFeedArr = []
+        newFeedArr.push(feedName)
         this.setState({
-            feeds: this.state.feeds.push(feedName),
+            feeds: newFeedArr,
         })
     }
 

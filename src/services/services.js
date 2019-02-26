@@ -160,14 +160,19 @@ class Services {
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
         let newFeedArr = [];
+        console.log(userArrStr)
+        console.log(parsedUserArr)
+        console.log(userName)
+        console.log(feedName)
+        console.log(newFeedArr);
         for (let user of parsedUserArr) {
             if (user.name === userName) {
                 const indexToDelete = user.feed.indexOf(feedName);
                 if (indexToDelete === 0) {
-                    newFeedArr = parsedUserArr.slice(indexToDelete + 1);
+                    newFeedArr = user.feed.slice(indexToDelete + 1);
                     user.feed = newFeedArr;
                 } else {
-                    newFeedArr = parsedUserArr.slice(0, indexToDelete).concat(parsedUserArr(indexToDelete + 1));
+                    newFeedArr = user.feed.slice(0, indexToDelete).concat(user.feed.slice(indexToDelete + 1));
                     user.feed = newFeedArr;
                 }
             }
