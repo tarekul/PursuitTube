@@ -15,7 +15,7 @@ class Search extends Component{
             url: 'https://www.googleapis.com/youtube/v3/search',
             params: {
                 part: 'snippet',
-                maxResults: 3,
+                maxResults: 8,
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
@@ -52,6 +52,7 @@ class Search extends Component{
             if(vid.img === url) {
                 const services = new Services()
                 services.addVideo(vid.video_id)
+                localStorage.setItem('suggestions',JSON.stringify(this.state.data))
                 this.props.history.push(`/video/${vid.video_id}`);
             }
         })
