@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import './video.css'
-
+import './video.css';
+import Comments from './Comments';
 
 class Video extends Component {
     constructor(props) {
@@ -48,7 +48,6 @@ class Video extends Component {
         return vids.vids.map((e, i) => {
             return (
                 <div className='suggestion' key={i} id={e.video_id} onClick={e => { this.clickedSuggestion(e) }}>
-                    {console.log(e)}
                     <div className='row'>
                     <img className='vid_img' src={e.img} id={e.video_id}></img>
                     <div className='col col-5'><h6 className='vid_title' id={e.video_id}>{e.title}</h6></div>
@@ -60,7 +59,7 @@ class Video extends Component {
 
     clickedSuggestion = (e) => {
         this.props.history.push(`/video/${e.target.id}`);
-        window.scrollTo(0,0)
+        window.scrollTo(0,0);
     }
     
     shuffleSuggestions = (array) => {
@@ -86,12 +85,12 @@ class Video extends Component {
           }
 
 
-    componentDidMount(props) {
-        this.getData()
+    componentDidMount() {
+        this.getData();
     }
 
     componentWillReceiveProps(newProps) {
-        this.getData(newProps.match.params.video_id)
+        this.getData(newProps.match.params.video_id);
     }
 
     render() {
@@ -110,8 +109,9 @@ class Video extends Component {
                             {/* <div className='col col-2'>Comments: {this.state.stats.commentCount}</div> */}
                         </div>
                         <div className='row'>
-                            <div className='col col-8'>{this.state.snippet.description}</div>
+                            <div className='col'>{this.state.snippet.description}</div>
                         </div>
+                        <Comments id={this.state.id}/>
                     </div>
                     <div className='col col-5 suggest_container'>
                         <h5 className='header_rec'>Recommended For You</h5>

@@ -8,7 +8,7 @@ class Search extends Component {
         super(props)
         this.state = {isLoading:true, data:[]}
     }
-// tareks key AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw
+
     getVids = (query)=>{
         axios({ 
             method: 'get',
@@ -19,7 +19,7 @@ class Search extends Component {
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
-                key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',
+                key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw',
                 q: query,
                 pageToken: ''
             }
@@ -40,7 +40,6 @@ class Search extends Component {
                 data.push(temp)
                 console.log(data)
         })
-        
         this.setState({isLoading:false,data:data})
         })
     }
