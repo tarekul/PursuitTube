@@ -63,6 +63,17 @@ class Services {
     }
 
     /*
+        @func activeUser
+        @params userName {str}
+        @desc simple func needed on the feed
+                to know what is the active user
+    */
+
+    activeUser = (userName) => {
+        localStorage.setItem('activeUser', userName);
+    }
+
+    /*
         @func deleteUser
         @params userName {str}
         @desc deletes a user obj from the users arr of objs
