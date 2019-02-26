@@ -151,6 +151,31 @@ class Services {
     }
 
     /*
+        @func deleteFeed
+        @params userName {str}, feedName {str}
+        @desc identifies user and deletes specified feed
+    */
+
+    deleteFeed = (userName, feedName) => {
+        const userArrStr = localStorage.getItem('users');
+        const parsedUserArr = JSON.parse(userArrStr);
+        let newFeedArr = [];
+        for (let user of parsedUserArr) {
+            if (user.name === userName) {
+                const indexToDelete = user.feed.indexOf(feedName);
+                if (indexToDelete === 0) {
+                    newFeedArr = parsedUserArr.slice(indexToDelete + 1);
+                    user.feed = newFeedArr;
+                } else {
+                    newFeedArr = parsedUserArr.slice(0, indexToDelete).concat(parsedUserArr(indexToDelete + 1));
+                    user.feed = newFeedArr;
+                }
+            }
+        }
+        localStorage.setItem('users', JSON.stringify(parsedUserArr));
+    }
+
+    /*
         @func addVideo
         @params id {str}
         @desc does some light validation

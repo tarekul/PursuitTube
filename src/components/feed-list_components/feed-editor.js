@@ -15,6 +15,14 @@ class FeedEditor extends Component {
         }
     }
 
+    deleteFeed = e => {
+        const button = e.target.parentNode;
+        const li = button.parentNode;
+        const innerArr = li.innerText.split('');
+        const name = innerArr.slice(0, innerArr.length - 2).join('');
+        console.log(name)
+    }
+
     render() {
         return(
             <div className="card" style={{width: "18rem"}}>
@@ -26,7 +34,7 @@ class FeedEditor extends Component {
                                     <li className="list-group-item" key={i} value={i}>
                                         {e}
                                         <button type="button" className="close" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true" onClick={this.deleteFeed}>&times;</span>
                                         </button>
                                     </li>     
                             )      
