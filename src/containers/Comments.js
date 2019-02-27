@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
 
 class Comments extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: props.id,
+            id: props.match.params.video_id,
             key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',
             comments: []
         }
@@ -20,7 +21,7 @@ class Comments extends Component {
         })
             .then((data) => {
                 let comments = data.data.items
-                this.setState({ id: id, comments: comments }, () => console.log(data.data.items[0].snippet));
+                this.setState({ id: id, comments: comments }, () => console.log(comments));
             })
             .catch(err => {
                 console.log(err);
@@ -32,8 +33,7 @@ class Comments extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(newProps);
-        this.getComments(newProps.id);
+        this.getComments(newProps.match.params.video_id);
     }
 
     render() {
@@ -48,4 +48,4 @@ class Comments extends Component {
 
 
 
-export default Comments;
+export default withRouter(Comments);
