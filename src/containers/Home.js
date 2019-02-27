@@ -16,7 +16,7 @@ class Home extends Component {
                 videoInfo: [{
                     title: '',
                     photo: '',
-                    id: '',
+                    id: 1,
                     channelName: '',
                     timePost: ''
                 }]
@@ -81,6 +81,11 @@ class Home extends Component {
         })
     }
 
+    getVideoID = (e) =>{
+      // this.props.history.push(`/video/${e.target.value}`)
+      console.log(e.target.childNodes)
+    }
+
     componentDidMount(){
         this.state.feed.map((e, i)=>{
            return this.feedLoad(e.feedName, i)
@@ -93,7 +98,7 @@ class Home extends Component {
           <Header name={this.state.name}/>
           <Feedlist feed={this.state.feed}/>
           {this.state.feed.map((feed, i) => {
-            return <Feedbar key={i} feed={feed} feedLoad={this.feedLoad}/>
+            return <Feedbar key={i} feed={feed} feedLoad={this.feedLoad} getVideoID={this.getVideoID}/>
           })}
           
         </>
