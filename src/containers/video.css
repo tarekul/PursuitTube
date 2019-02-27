@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+.suggestion {
+    padding-bottom: 20px;
+}
+
+.suggestion:hover {
+    cursor: pointer;
+}
+
+.vid_title:hover {
+    color: darkblue;
+}
+
+.vid_container {
+  margin: 20px;
+}
+
+.suggest_container {
+    margin: 20px;
+}
+
+.vid_img {
+    max-width: 170px;
+    max-height: 95px;;
+}
+
+.header_rec {
+    border-bottom: solid lightgray 0.5px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 400px;
+}

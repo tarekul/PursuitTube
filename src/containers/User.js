@@ -1,4 +1,4 @@
-//Dependencies
+// Dependencies
 import React, {Component} from 'react'
 import UserListTitle from '../components/user-list_components/user-list'
 import CreateUserTitle from '../components/user-list_components/create-user'
