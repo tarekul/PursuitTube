@@ -4,6 +4,7 @@ import {Link, withRouter} from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
 import Feedlist from '../components/homecomponents/Feedlist'
 import Header from '../components/homecomponents/Header'
+import './Home.css'
 
 class Home extends Component {
     constructor(props){
@@ -59,7 +60,7 @@ class Home extends Component {
               videoDefinition: 'high',
               type: 'video',
               videoEmbeddable: 'true',
-              key: 'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI',
+              key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw', //'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI'
               q: query,
               pageToken: ''
             }
@@ -69,7 +70,7 @@ class Home extends Component {
             copiedFeed[i].feedName = query
             copiedFeed[i].nextPageToken = data.data.nextPageToken
             copiedFeed[i].videoInfo = data.data.items.map((e)=>{
-                return {title:e.snippet.title,photo:e.snippet.thumbnails.high.url,id:e.id.videoId}
+                return {title:e.snippet.title,photo:e.snippet.thumbnails.medium.url,id:e.id.videoId}
             })
             this.setState({feed: copiedFeed})
         })
@@ -83,7 +84,7 @@ class Home extends Component {
 
     getVideoID = (e) =>{
       // this.props.history.push(`/video/${e.target.value}`)
-      console.log(e.target.childNodes)
+      console.log(e.target.children)
     }
 
     componentDidMount(){
@@ -95,12 +96,22 @@ class Home extends Component {
     render() {
       return (
         <>
-          <Header name={this.state.name}/>
+          <div className='row'>
+            <div className='col-12 center'>
+            <Header name={this.state.name}/>
+            </div>
+          </div>
+          <div className='row'>
+          <div className='col-4'>
+          <Feedlist feed={this.state.feed}/>
+          </div>
+          <div className='col-8'>
           <Feedlist feed={this.state.feed}/>
           {this.state.feed.map((feed, i) => {
             return <Feedbar key={i} feed={feed} feedLoad={this.feedLoad} getVideoID={this.getVideoID}/>
           })}
-          
+          </div>
+          </div>  
         </>
       );
     }
