@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.comment {
+    margin-bottom: 15px;
+}
+
+.display_name {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.display_img {
+    padding-top: 7px;
+}
