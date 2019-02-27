@@ -1,5 +1,7 @@
+// Dependencies
 import React from 'react';
 
+// React Component
 const CreateUserTitle = props => {
     return (
         <>
