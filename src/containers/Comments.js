@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
+import './comments.css';
+import moment from 'moment';
 
 class Comments extends Component {
     constructor(props) {
@@ -17,7 +19,7 @@ class Comments extends Component {
     getComments = (id = this.state.id) => {
         axios({
             method: 'get',
-            url: `https://www.googleapis.com/youtube/v3/commentThreads?key=${this.state.key}&textFormat=plainText&part=snippet&videoId=${id}&maxResults=10`,
+            url: `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2C+replies&maxResults=50&videoId=${id}&key=${this.state.key}`,
         })
             .then((data) => {
                 let comments = data.data.items
@@ -29,17 +31,38 @@ class Comments extends Component {
     }
 
     componentDidMount() {
-        this.getComments()
+        this.getComments();
     }
 
     componentWillReceiveProps(newProps) {
         this.getComments(newProps.match.params.video_id);
+        console.log('props coming');
     }
 
     render() {
         return (
             <>
-            {this.state.id}
+            <h6>Comments</h6>
+            {
+                this.state.comments.length === 0 
+                ? 
+                <div>No Comments</div>
+                :
+                this.state.comments.map((e, i) => {
+                    return (
+                    <div className='row comment' key={i}>
+                        <div className='col col-1 display_img'><img src={this.state.comments[i].snippet.topLevelComment.snippet.authorProfileImageUrl} ></img></div>
+                        <div className='col'>
+                            <div className='row'>
+                                <span className='display_name'>{this.state.comments[i].snippet.topLevelComment.snippet.authorDisplayName}</span>
+                                <span className='publish_date'>{moment(this.state.comments[i].snippet.topLevelComment.snippet.publishedAt).fromNow()}</span>
+                            </div>
+                        <div className='row'><span>{this.state.comments[i].snippet.topLevelComment.snippet.textOriginal}</span></div>
+                    </div>
+                    </div>
+                    )
+                })
+            }
             </>
         )
     }
