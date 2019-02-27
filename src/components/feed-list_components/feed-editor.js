@@ -37,7 +37,7 @@ class FeedEditor extends Component {
             <div className="card" style={{width: "18rem"}}>
                 <ul className="list-group list-group-flush">
                   {
-                    (feedServices.getFeed(feedServices.getActiveUser())) ? 
+                    (feedServices.getUsers() && feedServices.getActiveUser()) ? 
                         feedServices.getFeed(feedServices.getActiveUser()).map((e, i) => {
                             return(
                                     <li className="list-group-item" key={i} value={i}>
