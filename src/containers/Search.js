@@ -5,7 +5,7 @@ import axios from 'axios'
 class Search extends Component {
     constructor(props){
         super(props)
-        this.state = {isLoading:true, data:[],pageToken:''}
+        this.state = {isLoading:true,data:[],pageToken:''}
     }
 
     getVideoList = (query,pageToken='')=>{
@@ -35,18 +35,16 @@ class Search extends Component {
             })
             console.log(response.data.nextPageToken)
             let temp2 = this.state.data.concat(videoListData)
-            this.setState({isLoading:false,data:temp2,pageToken:response.data.nextPageToken},
-                ()=>{
-                let obj = {vids: this.state.data};
-                let suggestions = JSON.parse(localStorage.getItem('suggestions'));
-                if (!suggestions) {
-                    localStorage.setItem('suggestions',JSON.stringify(obj))
-                }
-                else {
-                    suggestions.vids = suggestions.vids.concat(obj.vids)
-                    localStorage.setItem('suggestions',JSON.stringify(suggestions))
-                }
-            })
+            let obj = {vids: temp2};
+            let suggestions = JSON.parse(localStorage.getItem('suggestions'));
+            if (!suggestions) {
+                localStorage.setItem('suggestions',JSON.stringify(obj))
+            }
+            else {
+                suggestions.vids = suggestions.vids.concat(obj.vids)
+                localStorage.setItem('suggestions',JSON.stringify(suggestions))
+            }
+            this.setState({isLoading:false,data:temp2,pageToken:response.data.nextPageToken})
         })
     }
 
@@ -62,6 +60,7 @@ class Search extends Component {
     componentWillReceiveProps(newProps){
         //console.log(this.props.match.params.search_term)
         //console.log(newProps.match.params.search_term)
+        this.setState({data:[]})
         this.getVideoList(newProps.match.params.search_term)
         window.addEventListener('scroll', this.handleOnScroll)
         
@@ -76,8 +75,8 @@ class Search extends Component {
     
     
         if(scrolledToBottom) {
-          setTimeout(this.getVideoList(this.props.match.params.search_term,this.state.pageToken), 3000 )
-          window.scrollTo(0,3500)
+          setTimeout(this.getVideoList(this.props.match.params.search_term,this.state.pageToken), 2000 )
+          window.scrollTo(0,5000)
         }
       }
 
