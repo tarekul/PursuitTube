@@ -9,6 +9,7 @@ const Navbar = (props) => {
 
     const searchVid = (e) => {
         if (e.keyCode === 13) {
+            console.log(e.target.value)
             if (e.target.value.length < 1) {
                 alert('Input a search value!');
                 return;
@@ -22,6 +23,10 @@ const Navbar = (props) => {
         }
     }
 
+    // const clickedSearch = () => {
+    //     props.history.push(`/search/${localStorage.getItem('seach')}`)
+    // }
+
     return (
         <div>
             <nav class="navbar navbar-light bg-light justify-content-between">
@@ -32,9 +37,8 @@ const Navbar = (props) => {
                     <Link className='link col' to='/feedlist'>FeedList</Link>
                     <div className='searchbar'>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search for videos..." aria-label="Search" onKeyDown={searchVid}/>
-                    <button class="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit" onClick={searchVid}>Search</button>
                     </div>
-                    
                 </form>
             </nav>
         </div>
