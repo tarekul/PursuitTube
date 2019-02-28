@@ -84,6 +84,21 @@ class Video extends Component {
             return array;
           }
 
+    checkRecommendations() {
+        if (!localStorage.getItem('suggestions')) {
+            return (
+                <div>No Recommendations. Search for more videos.</div>
+            )
+        }
+        else {
+            return(
+                <div className='suggestions'>
+                    {this.suggestionList()}
+                </div>
+            )
+        }
+    }
+
 
     componentDidMount() {
         this.getData();
@@ -118,9 +133,7 @@ class Video extends Component {
                     </div>
                     <div className='col col-5 suggest_container'>
                         <h5 className='header_rec'>Recommended For You</h5>
-                        <div className='suggestions'>
-                            {this.suggestionList()}
-                        </div>
+                        {this.checkRecommendations()}
                     </div>
                 </div>
             </>
