@@ -9,6 +9,7 @@ const Navbar = (props) => {
 
     const searchVid = (e) => {
         if (e.keyCode === 13) {
+            console.log(e.target.value)
             if (e.target.value.length < 1) {
                 alert('Input a search value!');
                 return;
@@ -22,25 +23,24 @@ const Navbar = (props) => {
         }
     }
 
+    // const clickedSearch = () => {
+    //     props.history.push(`/search/${localStorage.getItem('seach')}`)
+    // }
+
     return (
         <div>
-            <div className='row navbar navbar-fixed-top'>
-                <Link className='col logo' to='/'>PursuitTube</Link>
-                <Link className='link col' to='/'>Home</Link>
-                <Link className='link col' to='/user'>User</Link>
-                <Link className='link col' to='/feedlist'>FeedList</Link>
-                <div className='col col-4'>
-                    <nav className="navbar navbar-light bg-light">
-                        <form className="form-inline">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search.." aria-label="Search" onKeyDown={searchVid} />
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </nav>
-                </div>
-            </div>
-
-
-
+            <nav class="navbar navbar-light bg-light justify-content-between">
+                <form class="form-inline">
+                    <Link className='col logo' to='/'>PursuitTube</Link>
+                    <Link className='link col' to='/'>Home</Link>
+                    <Link className='link col' to='/user'>User</Link>
+                    <Link className='link col' to='/feedlist'>FeedList</Link>
+                    <div className='searchbar'>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search for videos..." aria-label="Search" onKeyDown={searchVid}/>
+                    <button class="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit" onClick={searchVid}>Search</button>
+                    </div>
+                </form>
+            </nav>
         </div>
     )
 }

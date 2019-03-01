@@ -50,7 +50,9 @@ class Comments extends Component {
                 :
                 this.state.comments.map((e, i) => {
                     return (
+                    <>
                     <div className='row comment' key={i}>
+                        {console.log(this.state.comments[i].replies)}
                         <div className='col col-1 display_img'><img src={this.state.comments[i].snippet.topLevelComment.snippet.authorProfileImageUrl} ></img></div>
                         <div className='col'>
                             <div className='row'>
@@ -58,8 +60,33 @@ class Comments extends Component {
                                 <span className='publish_date'>{moment(this.state.comments[i].snippet.topLevelComment.snippet.publishedAt).fromNow()}</span>
                             </div>
                         <div className='row'><span>{this.state.comments[i].snippet.topLevelComment.snippet.textOriginal}</span></div>
+                        <div className='col'>
+                        <div className='row replies' key={i}>
+                            <div>
+                                {
+                                    this.state.comments[i].replies === undefined 
+                                    ?
+                                    <div></div>
+                                    :
+                                    this.state.comments[i].replies.comments.map((e, j) => {
+                                        return ( 
+                                            <div className='reply row'>
+                                                <div className='col col-sm-2 reply_img'><img src={this.state.comments[i].replies.comments[j].snippet.authorProfileImageUrl}></img></div>
+                                                <div className='col col'>
+                                                        <div className='row reply_name'>{this.state.comments[i].replies.comments[j].snippet.authorDisplayName}</div>
+                                                        <div className='row reply_comment'>{this.state.comments[i].replies.comments[j].snippet.textOriginal}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    </div>
+                   
+                    </>
                     )
                 })
             }

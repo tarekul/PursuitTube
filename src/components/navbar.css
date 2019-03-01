@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 .link {
-    padding: 10px;
     color: darkblue;
     font-size: 1rem;
 }
@@ -10,15 +9,21 @@
 .navbar {
     padding: 20px;
     border-bottom: solid lightgrey .5px;
-    position: fixed;
-    top: 0px;
-    z-index: 10000;
-    width: 100%;
+    background-color: #e3f2fd;
 }
 
 .logo {
     color: darkblue;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    padding-right: 200%;
 }
 
+.searchbar {
+    margin-left: 27rem;
+}
+
+.form-control {
+    align-self: flex-end;
+    min-width: 400px;
+}
