@@ -27,7 +27,7 @@ class Services {
         } else {
             const userObj = {
                 name: `${userName}`,
-                feed: [],
+                feed: ['Music'],
             }
             localStorage.setItem('users', JSON.stringify([userObj]));
         }
