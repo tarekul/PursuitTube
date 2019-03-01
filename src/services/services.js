@@ -1,5 +1,4 @@
 class Services {
-
     
     /*
         @func addUser
@@ -27,7 +26,7 @@ class Services {
         } else {
             const userObj = {
                 name: `${userName}`,
-                feed: [],
+                feed: ['Music'],
             }
             localStorage.setItem('users', JSON.stringify([userObj]));
         }
@@ -69,9 +68,7 @@ class Services {
                 to know what set the active user
     */
 
-    activeUser = (userName) => {
-        localStorage.setItem('activeUser', userName);
-    }
+    activeUser = (userName) => localStorage.setItem('activeUser', userName);
 
     /*
         @func getActiveUser
@@ -80,9 +77,7 @@ class Services {
                 it gives back a str w active user
     */    
 
-    getActiveUser = () => {
-        return localStorage.getItem('activeUser');
-    }
+    getActiveUser = () => localStorage.getItem('activeUser');
 
     /*
         @func deleteUser
@@ -160,11 +155,7 @@ class Services {
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
         let newFeedArr = [];
-        console.log(userArrStr)
-        console.log(parsedUserArr)
-        console.log(userName)
-        console.log(feedName)
-        console.log(newFeedArr);
+        
         for (let user of parsedUserArr) {
             if (user.name === userName) {
                 const indexToDelete = user.feed.indexOf(feedName);
@@ -199,9 +190,7 @@ class Services {
         @desc takes to params and returns video id str
     */
 
-    getVideo = () => {
-        localStorage.getItem('video');
-    }
+    getVideo = () => localStorage.getItem('video');
 
     /*
         @func addSearch
@@ -222,9 +211,7 @@ class Services {
                 returns search str 
     */
 
-    getSearch = () => {
-        return localStorage.getItem("search");
-    }
+    getSearch = () => localStorage.getItem("search");
 }
 
 export default Services;
