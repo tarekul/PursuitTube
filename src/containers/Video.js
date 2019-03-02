@@ -22,7 +22,7 @@ class Video extends Component {
             url: 'https://www.googleapis.com/youtube/v3/videos',
             params: {
                 part: 'id,snippet,statistics',
-                key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',
+                key: 'AIzaSyAxOwb4BvlFibcxm6BT_8aSbN9yxVzq67w',
                 id: id
             }
         })
