@@ -212,6 +212,32 @@ class Services {
     */
 
     getSearch = () => localStorage.getItem("search");
+
+    
+    addHistory = (activeUser,videoObj) =>{
+        if(localStorage.getItem('history')){
+            let history = JSON.parse(localStorage.getItem('history'))
+            if(history[activeUser]){
+                history[activeUser].push(videoObj)
+                
+            }
+            else if(!history[activeUser]){
+                history[activeUser] = []
+                history[activeUser].push(videoObj)
+            }
+            localStorage.setItem('history',JSON.stringify(history))
+        }
+        else if(!localStorage.getItem.history){
+            const temp = {}
+            temp[activeUser] = [videoObj]
+            localStorage.setItem('history',JSON.stringify(temp))
+        }    
+        
+    }
+
+    getHistory = ()=>{
+        return localStorage.getItem('history')
+    }
 }
 
 export default Services;

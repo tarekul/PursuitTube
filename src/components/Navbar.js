@@ -35,6 +35,7 @@ const Navbar = (props) => {
                     <Link className='link col' to='/'>Home</Link>
                     <Link className='link col' to='/user'>User</Link>
                     <Link className='link col' to='/feedlist'>FeedList</Link>
+                    <Link className='link col' to='/history'>History</Link>
                     <div className='searchbar'>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search for videos..." aria-label="Search" onKeyDown={searchVid}/>
                     <button class="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit" onClick={searchVid}>Search</button>

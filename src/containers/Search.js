@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios'
+import moment from 'moment'
+import './Search.css'
+import Services from '../services/services'
 
 class Search extends Component {
     constructor(props){
         super(props)
-        this.state = {isLoading:true,data:[],pageToken:''}
+        this.state = {isLoading:true,data:[],pageToken:'',hover:false}
     }
 
     getVideoList = (query,pageToken='')=>{
@@ -31,9 +34,11 @@ class Search extends Component {
                 temp.img = vid.snippet.thumbnails.medium.url //img url
                 temp.title = vid.snippet.title //title
                 temp.channel_title = vid.snippet.channelTitle
+                temp.descrip = vid.snippet.description
+                temp.date = vid.snippet.publishedAt
                 videoListData.push(temp)
             })
-            console.log(response.data.nextPageToken)
+            //console.log(response.data.nextPageToken)
             let temp2 = this.state.data.concat(videoListData)
             let obj = {vids: temp2};
             let suggestions = JSON.parse(localStorage.getItem('suggestions'));
@@ -78,7 +83,25 @@ class Search extends Component {
           setTimeout(this.getVideoList(this.props.match.params.search_term,this.state.pageToken), 2000 )
           window.scrollTo(0,5000)
         }
-      }
+    }
+
+    relativeTime = (dateString)=>{
+        const temp = dateString.slice(0,10)
+        let str = ''
+        for(let i=0;i<temp.length;i++){
+            if(temp[i] !== '-') str += (temp[i])
+        }
+        //console.log(moment(str, "YYYYMMDD").fromNow())
+        return moment(str, "YYYYMMDD").fromNow()
+    }
+
+    addHistory = (vidObj)=>{
+        let services = new Services()
+        if(services.getActiveUser()) {
+            services.addHistory(services.getActiveUser(),vidObj)
+        }
+
+    }
 
     render() {
         if(this.state.isLoading) return <div class="spinner-border text-info" role="status">
@@ -86,18 +109,26 @@ class Search extends Component {
       </div>
         else{ 
             // <h3>Search results for BLANK</h3>
-            return <>{this.state.data.map((vid, i)=>{
-                return <div className='row' key={i}>
-                    <div className='col'>
-                        <Link to={`/video/${vid.video_id}`}><img src={vid.img} alt={vid.img} /></Link>
-                    </div>
-                    <div className='col'>
-                        <p>{vid.title}</p>
-                        <p>{vid.channel_title}</p>
-                    </div>
+            return <>
+            <div className="jumbotron">
+            <div style={{marginLeft:'10%'}}>
+            {this.state.data.map((vid, i)=>{
+                return <div className='hover row' key={i}>
+                <div className='col-4'>
+                    <Link to={`/video/${vid.video_id}`}><img onClick={e=>this.addHistory(vid)} src={vid.img} alt={vid.img} /></Link>
                 </div>
+                <div className='col-6'>
+                    <h5>{vid.title}</h5>
+                    <p>{vid.channel_title}</p>
+                    <p>{vid.descrip}</p>
+                    <p>{this.relativeTime(vid.date)}</p>
+                </div>
+                </div>
+
             })}
             {/* <button onClick={e=>{this.getVideoList(this.props.match.params.search_term,this.state.offset+10)}}>Load More</button> */}
+            </div>
+            </div>
             </>
             
         }     
