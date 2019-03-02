@@ -25,7 +25,8 @@ class UserListDropdown extends Component {
 
     userClickHandler = e => {
         const innerArr = e.currentTarget.innerText.split('')
-        const name = innerArr.slice(0, innerArr.length - 2).join('');
+        const name = innerArr.slice(0, innerArr.length - 1).join('');
+        console.log(name)
         userServices.activeUser(name);
         this.setState({
             activeUser: name,

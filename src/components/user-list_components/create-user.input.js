@@ -27,14 +27,18 @@ const CreateUserInput = props => {
     }
 
     return (
-            <div className="input-group mb-3 col-6">
-                <input type="text" className="form-control" aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-default" onKeyDown={keyDownHandler} />
-                <div className="input-group-append">
-                    <span className="input-group-text" id="inputGroup-sizing-default" 
-                        style={{maxHeight: 'fit-content'}} onClick={clickHandler}>Add</span>
+        <>
+            <div className='col col-6'>
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-default" onKeyDown={keyDownHandler} />
+                    <div className="input-group-append">
+                      <span className="input-group-text" id="inputGroup-sizing-default"
+                      style={{'maxHeight': 'fit-content'}} onClick={clickHandler}>Add</span>
+                    </div>
                 </div>
             </div>
+        </>
     )
 }
 
