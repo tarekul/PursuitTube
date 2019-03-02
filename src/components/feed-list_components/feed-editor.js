@@ -34,6 +34,7 @@ class FeedEditor extends Component {
 
     render() {
         return(
+
                 <div className="card" style={{width: "18rem"}}>
                     <ul className="list-group list-group-flush">
                       {
@@ -51,6 +52,7 @@ class FeedEditor extends Component {
                             this.state.activeUser.feed.map((e, i) => {
                                 return(
                                     <li className="list-group-item" key={i}>
+
                                         {e}
                                     </li>
                                 )
