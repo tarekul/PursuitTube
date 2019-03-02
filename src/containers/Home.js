@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import Services from '../services/services'
 import { withRouter } from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
@@ -11,17 +12,8 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: 'Mo',
-      feed: [{
-        feedName: 'ESPN First Take',
-        nextPageToken: '',
-        videoInfo: []
-      },
-      {
-        feedName: 'Drake',
-        nextPageToken: '',
-        videoInfo: []
-      }]
+      name: '',
+      feed: []
     }
   }
 
@@ -31,20 +23,32 @@ class Home extends Component {
       url: 'https://www.googleapis.com/youtube/v3/search',
       params: {
         part: 'snippet',
-        maxResults: 8,
+        maxResults: 1,
         videoDefinition: 'high',
         type: 'video',
         videoEmbeddable: 'true',
-        key: 'AIzaSyDzrhVSoNSorn64sSP1kp34zkCG9T2GitU',
+        key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',
         q: searchTerm,
         pageToken: pageToken
       }
     })
-      .catch((err) => console.log(err))
+      .catch(() => console.log('there is a problem'))
   }
 
   componentDidMount() {
-    const {feed} = this.state
+    const services = new Services()
+    let activeUser = services.getActiveUser()
+    if(!activeUser){
+      activeUser = ''
+    }
+    let feed = services.getFeed(activeUser)
+    if(!feed){
+      feed = [{feedName:'',nextPageToken:'',videoInfo: []}]
+    }
+    feed = feed.map((e, i)=>{
+      return {feedName: e, nextPageToken:'', videoInfo: []}
+    })
+    this.setState({name: activeUser, feed: feed})
     let initialAPICall = feed.map(e => {
       return this.callToYoutubeAPI(e.feedName, e.nextPageToken)
     })
@@ -61,14 +65,14 @@ class Home extends Component {
             return {
               channelName: channelTitle,
               id: id.videoId,
-              timePosted: publishedAt,
+              timePosted: moment(publishedAt).fromNow(),
               title: title,
             }
           })
         })
-        this.setState({ feed: copiedFeed})
+        this.setState({ feed: copiedFeed, name: activeUser})
       })
-      .catch(err => console.log(err))
+      .catch(() => console.log('there is a problem'))
   }
 
   loadMoreVideos = (i) => {
@@ -85,15 +89,14 @@ class Home extends Component {
           return {
             channelName: channelTitle,
             id: id.videoId,
-            timePosted: publishedAt,
+            timePosted: moment(publishedAt).fromNow(),
             title: title,
           }
         })
         copiedFeed[i].videoInfo = copiedFeed[i].videoInfo.concat(newVideoInfo)
-        console.log(copiedFeed)
         this.setState({ feed: copiedFeed })
       })
-      .catch(err => console.log(err))
+      .catch(() => console.log('there is a problem'))
   }
 
   goToVideoPage = (e) => {
