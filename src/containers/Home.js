@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Services from '../services/services'
 import { withRouter } from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
 import Feedlist from '../components/homecomponents/Feedlist'
@@ -10,16 +11,21 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
+      name: 'Mo',
       feed: [{
         feedName: 'ESPN First Take',
+        nextPageToken: '',
+        videoInfo: []
+      },
+      {
+        feedName: 'Drake',
         nextPageToken: '',
         videoInfo: []
       }]
     }
   }
 
-  callToYoutubeAPI = (searchTerm, pageToken) => {
+  callToYoutubeAPI = (searchTerm='', pageToken='') => {
     return axios({
       method: 'get',
       url: 'https://www.googleapis.com/youtube/v3/search',
@@ -38,7 +44,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { feed } = this.state;
+    const {feed} = this.state
     let initialAPICall = feed.map(e => {
       return this.callToYoutubeAPI(e.feedName, e.nextPageToken)
     })
@@ -60,7 +66,7 @@ class Home extends Component {
             }
           })
         })
-        this.setState({ feed: copiedFeed })
+        this.setState({ feed: copiedFeed})
       })
       .catch(err => console.log(err))
   }
@@ -96,8 +102,8 @@ class Home extends Component {
   render() {
     return (
       <>
-        <div className='homeRow'>
-          <div className='homeCol-12'>
+        <div className='homeRow' style={{'justifyContent':'center'}}>
+          <div className='homeCol-9'>
             <div className='homeRow'>
               <div className='homeCol-12 center'>
                 <Header name={this.state.name} />
@@ -108,7 +114,6 @@ class Home extends Component {
                 <Feedlist feed={this.state.feed} />
               </div>
               <div className='homeCol-8'>
-                <Feedlist feed={this.state.feed} />
                 {this.state.feed.map((feed, i) => {
                   return <Feedbar key={i} value={i} feed={feed} loadMoreVideos={this.loadMoreVideos} goToVideoPage={this.goToVideoPage} />
                 })}
