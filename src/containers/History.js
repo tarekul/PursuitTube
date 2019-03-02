@@ -76,7 +76,7 @@ class History extends Component {
             <div className='col-6'><div style={{display:'inline-block'}} className='col-2'><p className='lead'>Users:</p></div> 
             {this.state.users.map(elem=>{
                 return <div onClick={e=>this.changeUser(elem)} style={{display:'inline-block'}} className='col-2'>
-                <button type="button" class="btn btn-info">{elem}</button></div>
+                <button type="button" className="btn btn-info">{elem}</button></div>
             })}
             </div>
             <div className='col-4'><h3>{this.state.user}'s History</h3></div>
@@ -99,16 +99,16 @@ class History extends Component {
             </div>
             </div>
             </>
-            else return <div class="card text-center">
-            <div class="card-header">
+            else return <div className="card text-center">
+            <div className="card-header">
               History
             </div>
-            <div class="card-body">
-              <h5 class="card-title">No History to see here</h5>
-              <p class="card-text">Either there is no active user or active user has no history</p>
-              <a href="#" class="btn btn-primary">Home</a>
+            <div className="card-body">
+              <h5 className="card-title">No History to see here</h5>
+              <p className="card-text">Either there is no active user or active user has no history</p>
+              <a href="#" className="btn btn-primary">Home</a>
             </div>
-            <div class="card-footer text-muted">
+            <div className="card-footer text-muted">
               PursuitTube
             </div>
           </div>
