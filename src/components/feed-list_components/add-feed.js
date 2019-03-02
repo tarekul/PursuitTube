@@ -13,6 +13,9 @@ const AddFeed = props => {
                 alert('No user has been selected.')
                 e.target.value = '';
                 return;
+            } else if (e.target.value.length <= 1) {
+                alert('Feed needs to have more than one character.')
+                return;
             }
             feedServices.addFeed(feedServices.getActiveUser(), e.target.value);
             props.updateUserFeed(e.target.value);
