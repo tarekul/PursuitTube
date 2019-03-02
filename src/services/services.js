@@ -212,7 +212,13 @@ class Services {
 
     getSearch = () => localStorage.getItem("search");
 
-    
+    /*
+        @func addHistory
+        @params activeUser {str}, videoObj {str}
+        @desc takes active user and videoObj and stores
+                as key-value pair.
+    */
+
     addHistory = (activeUser,videoObj) =>{
         if(localStorage.getItem('history')){
             let history = JSON.parse(localStorage.getItem('history'))
@@ -234,8 +240,26 @@ class Services {
         
     }
 
-    getHistory = ()=>{
-        return localStorage.getItem('history')
+    /*
+        @func getHistory
+        @params null
+        @desc returns video obj
+    */
+
+    getHistory = () => localStorage.getItem('history');
+
+    /*
+        @func deleteHistory
+        @params userName {str}
+        @desc takes username param and 
+            matches to history obj to 
+            delete video history
+    */
+
+    deleteHistory = userName => {
+        const historyObj = JSON.parse(this.getHistory());
+        delete historyObj[userName];
+        localStorage.setItem('history', historyObj);
     }
 }
 
