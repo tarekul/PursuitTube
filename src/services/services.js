@@ -136,6 +136,7 @@ class Services {
     */
 
     getFeed = userName => {
+        if(!userName) return ['Music']
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
         for (let user of parsedUserArr) {
