@@ -200,7 +200,6 @@ class Services {
     */
 
     addSearch = searchQuery => {
-        if (searchQuery.length < 1) alert('Search keyword is too short.');
         localStorage.setItem('search', searchQuery);
     }
 

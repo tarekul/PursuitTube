@@ -17,11 +17,11 @@ class Search extends Component {
             url: 'https://www.googleapis.com/youtube/v3/search',
             params: {
                 part: 'snippet',
-                maxResults: 10,
+                maxResults: 1,
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
-                key: 'AIzaSyBA0U8ir7qJWROY9zMNsiYgTsGFvRO5oD0',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
+                key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
                 q: query,
                 pageToken: pageToken
             }
