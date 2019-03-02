@@ -29,16 +29,16 @@ const Navbar = (props) => {
 
     return (
         <div>
-            <nav class="navbar navbar-light bg-light justify-content-between">
-                <form class="form-inline">
+            <nav className="navbar navbar-light bg-light justify-content-between">
+                <form className="form-inline">
                     <Link className='col logo' to='/'>PursuitTube</Link>
                     <Link className='link col' to='/'>Home</Link>
                     <Link className='link col' to='/user'>User</Link>
                     <Link className='link col' to='/feedlist'>FeedList</Link>
                     <Link className='link col' to='/history'>History</Link>
                     <div className='searchbar'>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search for videos..." aria-label="Search" onKeyDown={searchVid}/>
-                    <button class="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit" onClick={searchVid}>Search</button>
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search for videos..." aria-label="Search" onKeyDown={searchVid}/>
+                    <button className="btn btn-outline-success my-2 my-sm-0 srch_btn" type="submit" onClick={searchVid}>Search</button>
                     </div>
                 </form>
             </nav>
