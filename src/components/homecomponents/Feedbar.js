@@ -1,21 +1,47 @@
 import React from 'react'
+import InfiniteScroll from 'react-infinite-scroller'
 
 const Feedbar = (props) => {
-    console.log(props.feed.feedName)
-    console.log(props.feed.videoInfo)
+    const { feedName, videoInfo } = props.feed
     return <>
-        <div>{props.feed.feedName}</div>
-        <div>{props.feed.videoInfo.map((e, i)=>{
+    <div>
+        {feedName}
+        <div className='homeRow'>
+        <div style={{"height":"700px", "overflow":"auto"}}>
+    <InfiniteScroll
+        pageStart={1}
+        loadMore={()=>props.loadMoreVideos(props.value)}
+        hasMore={true || false}
+        loader={<div className="loader" key={0}>Loading ...</div>}
+        useWindow={false}
+    >
+    <div className='homeRow'>
+        {videoInfo.map((e,i)=>{
             return <>
-            <div value={e.id} onClick={props.getVideoID} style={{'border':'solid 1px black'}}>
-                <img src={e.photo} key={i}></img>
-                <span>lol</span>
-                <span>{e.title}</span>
-                <span>{e.channelName}</span>
-                <span>{e.timePost}</span>
+            <div className='homeCol-3'  key={i}>
+                <div className='homeRow' >
+                    <div className='homeCol-12'>
+                        <img style={{'width':'100%','height':'calc(width*3/4)'}} src={`https://i.ytimg.com/vi/${e.id}/mqdefault.jpg`} alt='' onClick={()=>props.goToVideoPage(e.id)}></img>
+                    </div>
+                    <div className='homeCol-12'>
+                        {e.title}
+                    </div>
+                    <div className='homeCol-12'>
+                        {e.channelName}
+                    </div>
+                    <div className='homeCol-12'>
+                        {e.timePosted}
+                    </div>
+                </div>
             </div>
             </>
-        })}</div>
+        })}
+        </div>
+    </InfiniteScroll>
+</div>
+        </div>
+    </div>
+   
     </>
 }
 
