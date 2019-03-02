@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+.comment {
+    margin-bottom: 15px;
+}
+
+.display_name {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.display_img {
+    padding-top: 7px;
+}
+
+.reply {
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+

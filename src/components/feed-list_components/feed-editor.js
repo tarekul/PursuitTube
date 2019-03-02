@@ -24,7 +24,8 @@ class FeedEditor extends Component {
         const li = button.parentNode;
         const innerArr = li.innerText.split('');
         const feedName = innerArr.slice(0, innerArr.length - 2).join('');
-        feedServices.deleteFeed(feedServices.getActiveUser(), feedName)
+
+        feedServices.deleteFeed(feedServices.getActiveUser(), feedName);
         const deletedFeedsArr = [];
         deletedFeedsArr.push(feedName)
         this.setState({
@@ -37,7 +38,7 @@ class FeedEditor extends Component {
             <div className="card" style={{width: "18rem"}}>
                 <ul className="list-group list-group-flush">
                   {
-                    (feedServices.getFeed(feedServices.getActiveUser())) ? 
+                    (feedServices.getUsers() && feedServices.getUsers().length >= 1 && feedServices.getActiveUser()) ? 
                         feedServices.getFeed(feedServices.getActiveUser()).map((e, i) => {
                             return(
                                     <li className="list-group-item" key={i} value={i}>

@@ -9,9 +9,14 @@ const feedServices = new Services();
 const AddFeed = props => {
     const clickHandler = e => {
         if (e.keyCode === 13) {
+            if (!feedServices.getActiveUser()) {
+                alert('No user has been selected.')
+                e.target.value = '';
+                return;
+            }
             feedServices.addFeed(feedServices.getActiveUser(), e.target.value);
             props.updateUserFeed(e.target.value);
-            e.target.value = ''
+            e.target.value = '';
         }
     }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Services from '../services/services'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
 import Feedlist from '../components/homecomponents/Feedlist'
 import Header from '../components/homecomponents/Header'
@@ -43,26 +42,19 @@ class Home extends Component {
       .catch((err) => console.log(err))
   }
 
-  componentDidMount() {
-    const {feed} = this.state
-    let initialAPICall = feed.map(e => {
-      return this.callToYoutubeAPI(e.feedName, e.nextPageToken)
-    })
-    Promise.all(initialAPICall)
-      .then(response => {
-        const { feed } = this.state;
-        const copiedFeed = [...feed]
-        response.forEach((e, i) => {
-          const { items, nextPageToken } = e.data
-          copiedFeed[i].nextPageToken = nextPageToken
-          copiedFeed[i].videoInfo = items.map(e => {
-            const { id, snippet } = e
-            const { channelTitle, publishedAt, title } = snippet
-            return {
-              channelName: channelTitle,
-              id: id.videoId,
-              timePosted: publishedAt,
-              title: title,
+    feedLoad = (query, i) => {
+        axios({
+            method: 'get',
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            params: {
+              part: 'snippet',
+              maxResults: 10,
+              videoDefinition: 'high',
+              type: 'video',
+              videoEmbeddable: 'true',
+              key: 'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI',
+              q: query,
+              pageToken: ''
             }
           })
         })

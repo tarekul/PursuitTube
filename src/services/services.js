@@ -1,5 +1,4 @@
 class Services {
-
     
     /*
         @func addUser
@@ -9,7 +8,7 @@ class Services {
     */
 
     addUser = userName => {
-        if (userName.length < 1 || typeof userName !== 'string' || userName.length > 10) {
+        if (userName.length < 1 || typeof userName !== 'string' || userName.length > 30) {
             alert('Wrong Input.')
             return;
         }
@@ -27,7 +26,7 @@ class Services {
         } else {
             const userObj = {
                 name: `${userName}`,
-                feed: [],
+                feed: ['Music'],
             }
             localStorage.setItem('users', JSON.stringify([userObj]));
         }
@@ -69,9 +68,7 @@ class Services {
                 to know what set the active user
     */
 
-    activeUser = (userName) => {
-        localStorage.setItem('activeUser', userName);
-    }
+    activeUser = (userName) => localStorage.setItem('activeUser', userName);
 
     /*
         @func getActiveUser
@@ -80,9 +77,7 @@ class Services {
                 it gives back a str w active user
     */    
 
-    getActiveUser = () => {
-        return localStorage.getItem('activeUser');
-    }
+    getActiveUser = () => localStorage.getItem('activeUser');
 
     /*
         @func deleteUser
@@ -118,7 +113,7 @@ class Services {
     */
 
     addFeed = (userName, feedName) => {
-        if (userName.length < 1 || typeof userName !== 'string' || userName.length > 10) {
+        if (userName.length < 1 || typeof userName !== 'string') {
             alert('Wrong Input.')
             return;
         }
@@ -160,11 +155,7 @@ class Services {
         const userArrStr = localStorage.getItem('users');
         const parsedUserArr = JSON.parse(userArrStr);
         let newFeedArr = [];
-        console.log(userArrStr)
-        console.log(parsedUserArr)
-        console.log(userName)
-        console.log(feedName)
-        console.log(newFeedArr);
+        
         for (let user of parsedUserArr) {
             if (user.name === userName) {
                 const indexToDelete = user.feed.indexOf(feedName);
@@ -199,9 +190,7 @@ class Services {
         @desc takes to params and returns video id str
     */
 
-    getVideo = () => {
-        localStorage.getItem('video');
-    }
+    getVideo = () => localStorage.getItem('video');
 
     /*
         @func addSearch
@@ -222,8 +211,32 @@ class Services {
                 returns search str 
     */
 
-    getSearch = () => {
-        return localStorage.getItem("search");
+    getSearch = () => localStorage.getItem("search");
+
+    
+    addHistory = (activeUser,videoObj) =>{
+        if(localStorage.getItem('history')){
+            let history = JSON.parse(localStorage.getItem('history'))
+            if(history[activeUser]){
+                history[activeUser].push(videoObj)
+                
+            }
+            else if(!history[activeUser]){
+                history[activeUser] = []
+                history[activeUser].push(videoObj)
+            }
+            localStorage.setItem('history',JSON.stringify(history))
+        }
+        else if(!localStorage.getItem.history){
+            const temp = {}
+            temp[activeUser] = [videoObj]
+            localStorage.setItem('history',JSON.stringify(temp))
+        }    
+        
+    }
+
+    getHistory = ()=>{
+        return localStorage.getItem('history')
     }
 }
 
