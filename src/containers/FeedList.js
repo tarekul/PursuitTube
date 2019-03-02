@@ -43,4 +43,3 @@ class FeedList extends Component {
 }
 
 export default FeedList;
-
