@@ -30,7 +30,9 @@ const AddFeed = props => {
                             style={{maxHeight: 'fit-content'}}>Add</span>
                     </div>
             </div>
-        </div>
+
+        </div>   
+
     )    
 }
 
