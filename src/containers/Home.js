@@ -35,7 +35,7 @@ class Home extends Component {
         videoDefinition: 'high',
         type: 'video',
         videoEmbeddable: 'true',
-        key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY', //'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw', // 'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI'
+        key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw',
         q: searchTerm,
         pageToken: pageToken
       }
@@ -90,6 +90,7 @@ class Home extends Component {
           }
         })
         copiedFeed[i].videoInfo = copiedFeed[i].videoInfo.concat(newVideoInfo)
+        console.log(copiedFeed)
         this.setState({ feed: copiedFeed })
       })
       .catch(err => console.log(err))
