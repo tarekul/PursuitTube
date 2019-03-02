@@ -7,7 +7,7 @@ import Services from '../services/services'
 class History extends Component {
     constructor(props){
         super(props)
-        this.state = {user:'',userhistory:[],users:[]}
+        this.state = {user:'',userhistory:[],users:[],active:''}
     }
 
     
@@ -18,8 +18,14 @@ class History extends Component {
             let users = Object.keys(history)
             if(services.getActiveUser()){
                 const activeUser = services.getActiveUser()
-                if(history[activeUser]) this.setState({user:activeUser,userhistory: history[activeUser],users:users})
+                if(history[activeUser]) this.setState({user:activeUser,userhistory: history[activeUser],users:users,active:true})
             }
+            else{
+                this.setState({active:false})
+            }
+        }
+        else{
+            this.setState({active:false})
         }
     }
 
@@ -64,12 +70,7 @@ class History extends Component {
     }
 
     render() {
-        // if(this.state.isLoading) return <div class="spinner-border text-info" role="status">
-        //     <span class="sr-only">Loading...</span>
-        //     </div>
-        //else{ 
-            // <h3>Search results for BLANK</h3>
-            return <>
+            if(this.state.active) return <>
             <div className="jumbotron">
             <div style={{marginLeft:'10%'}}>
             <div className='col-6'><div style={{display:'inline-block'}} className='col-2'><p className='lead'>Users:</p></div> 
@@ -98,6 +99,19 @@ class History extends Component {
             </div>
             </div>
             </>
+            else return <div class="card text-center">
+            <div class="card-header">
+              History
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">No History to see here</h5>
+              <p class="card-text">Either there is no active user or active user has no history</p>
+              <a href="#" class="btn btn-primary">Home</a>
+            </div>
+            <div class="card-footer text-muted">
+              PursuitTube
+            </div>
+          </div>
             
         //}     
     }   
