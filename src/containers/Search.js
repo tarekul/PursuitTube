@@ -17,11 +17,11 @@ class Search extends Component {
             url: 'https://www.googleapis.com/youtube/v3/search',
             params: {
                 part: 'snippet',
-                maxResults: 1,
+                maxResults: 5,
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
-                key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
+                key: 'AIzaSyAxOwb4BvlFibcxm6BT_8aSbN9yxVzq67w',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
                 q: query,
                 pageToken: pageToken
             }
@@ -118,7 +118,7 @@ class Search extends Component {
                     <Link to={`/video/${vid.video_id}`}><img onClick={e=>this.addHistory(vid)} src={vid.img} alt={vid.img} /></Link>
                 </div>
                 <div className='col-6'>
-                    <h5>{vid.title}</h5>
+                    <Link className='link_name' to={`/video/${vid.video_id}`}>{vid.title}</Link>
                     <p>{vid.channel_title}</p>
                     <p>{vid.descrip}</p>
                     <p>{this.relativeTime(vid.date)}</p>
