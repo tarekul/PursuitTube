@@ -1,120 +1,124 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import {Link, withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
 import Feedlist from '../components/homecomponents/Feedlist'
 import Header from '../components/homecomponents/Header'
 import './Home.css'
 
 class Home extends Component {
-    constructor(props){
-        super(props)    
-        this.state = {
-            name: "Mo",
-            feed: [{
-                feedName: 'lol',
-                nextPageToken: '',
-                videoInfo: [{
-                    title: '',
-                    photo: '',
-                    id: 1,
-                    channelName: '',
-                    timePost: ''
-                }]
-            },
-            {feedName: 'girl',
-            nextPageToken: '',
-            videoInfo: [{
-                title: '',
-                photo: '',
-                id: ''
-                }]
-            },
-            {feedName: 'boy',
-            nextPageToken: '',
-            videoInfo: [{
-                title: '',
-                photo: '',
-                id: ''
-                }]
-            },
-            {feedName: 'Messi',
-            nextPageToken: '',
-            videoInfo: [{
-                title: '',
-                photo: '',
-                id: ''
-                }]
-            }
-          ],
-        }
-    }
-
-    feedLoad = (query, i) => {
-        axios({
-            method: 'get',
-            url: 'https://www.googleapis.com/youtube/v3/search',
-            params: {
-              part: 'snippet',
-              maxResults: 8,
-              videoDefinition: 'high',
-              type: 'video',
-              videoEmbeddable: 'true',
-              key: 'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw', //'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI'
-              q: query,
-              pageToken: ''
-            }
-          })
-        .then((data)=>{
-            let copiedFeed = [...this.state.feed]
-            copiedFeed[i].feedName = query
-            copiedFeed[i].nextPageToken = data.data.nextPageToken
-            copiedFeed[i].videoInfo = data.data.items.map((e)=>{
-                return {title:e.snippet.title,photo:e.snippet.thumbnails.medium.url,id:e.id.videoId}
-            })
-            this.setState({feed: copiedFeed})
-        })
-        .then(()=>{
-            // console.log(this.state.feed[i])
-        })
-        .catch(()=>{
-
-        })
-    }
-
-    getVideoID = (e) =>{
-      // this.props.history.push(`/video/${e.target.value}`)
-      console.log(e.target.children)
-    }
-
-    componentDidMount(){
-        this.state.feed.map((e, i)=>{
-           return this.feedLoad(e.feedName, i)
-        })
-    }
-
-    render() {
-      return (
-        <>
-          <div className='row'>
-            <div className='col-12 center'>
-            <Header name={this.state.name}/>
-            </div>
-          </div>
-          <div className='row'>
-          <div className='col-4'>
-          <Feedlist feed={this.state.feed}/>
-          </div>
-          <div className='col-8'>
-          <Feedlist feed={this.state.feed}/>
-          {this.state.feed.map((feed, i) => {
-            return <Feedbar key={i} feed={feed} feedLoad={this.feedLoad} getVideoID={this.getVideoID}/>
-          })}
-          </div>
-          </div>  
-        </>
-      );
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      feed: [{
+        feedName: 'ESPN First Take',
+        nextPageToken: '',
+        videoInfo: []
+      }]
     }
   }
+
+  callToYoutubeAPI = (searchTerm, pageToken) => {
+    return axios({
+      method: 'get',
+      url: 'https://www.googleapis.com/youtube/v3/search',
+      params: {
+        part: 'snippet',
+        maxResults: 8,
+        videoDefinition: 'high',
+        type: 'video',
+        videoEmbeddable: 'true',
+        key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY', //'AIzaSyDEsrVHQ4ZTg26TevQhP882rTDPFyCc4Jw', // 'AIzaSyD1HDXH0JOccPKU7SYfh08ctspDqbUc4SI'
+        q: searchTerm,
+        pageToken: pageToken
+      }
+    })
+      .catch((err) => console.log(err))
+  }
+
+  componentDidMount() {
+    const { feed } = this.state;
+    let initialAPICall = feed.map(e => {
+      return this.callToYoutubeAPI(e.feedName, e.nextPageToken)
+    })
+    Promise.all(initialAPICall)
+      .then(response => {
+        const { feed } = this.state;
+        const copiedFeed = [...feed]
+        response.forEach((e, i) => {
+          const { items, nextPageToken } = e.data
+          copiedFeed[i].nextPageToken = nextPageToken
+          copiedFeed[i].videoInfo = items.map(e => {
+            const { id, snippet } = e
+            const { channelTitle, publishedAt, title } = snippet
+            return {
+              channelName: channelTitle,
+              id: id.videoId,
+              timePosted: publishedAt,
+              title: title,
+            }
+          })
+        })
+        this.setState({ feed: copiedFeed })
+      })
+      .catch(err => console.log(err))
+  }
+
+  loadMoreVideos = (i) => {
+    const { feed } = this.state;
+    this.callToYoutubeAPI(feed[i].feedName, feed[i].nextPageToken)
+      .then(response => {
+        const { feed } = this.state;
+        const copiedFeed = [...feed]
+        const { items, nextPageToken } = response.data
+        copiedFeed[i].nextPageToken = nextPageToken
+        const newVideoInfo = items.map(e => {
+          const { id, snippet } = e
+          const { channelTitle, publishedAt, title } = snippet
+          return {
+            channelName: channelTitle,
+            id: id.videoId,
+            timePosted: publishedAt,
+            title: title,
+          }
+        })
+        copiedFeed[i].videoInfo = copiedFeed[i].videoInfo.concat(newVideoInfo)
+        this.setState({ feed: copiedFeed })
+      })
+      .catch(err => console.log(err))
+  }
+
+  goToVideoPage = (e) => {
+    this.props.history.push(`/video/${e}`)
+  }
+
+  render() {
+    return (
+      <>
+        <div className='homeRow'>
+          <div className='homeCol-12'>
+            <div className='homeRow'>
+              <div className='homeCol-12 center'>
+                <Header name={this.state.name} />
+              </div>
+            </div>
+            <div className='homeRow'>
+              <div className='homeCol-4'>
+                <Feedlist feed={this.state.feed} />
+              </div>
+              <div className='homeCol-8'>
+                <Feedlist feed={this.state.feed} />
+                {this.state.feed.map((feed, i) => {
+                  return <Feedbar key={i} value={i} feed={feed} loadMoreVideos={this.loadMoreVideos} goToVideoPage={this.goToVideoPage} />
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
 
 export default withRouter(Home)
