@@ -19,8 +19,8 @@ const Feedbar = (props) => {
     >
     <div className='homeRow'>
         {videoInfo.map((e,i)=>{
-            return <>
-            <div className='homeCol-3'  key={i}>
+            return (
+            <div className='homeCol-3'  key={i}> 
                 <div className='homeRow' >
                     <div className='homeCol-12'>
                         <img style={{'width':'100%','height':'calc(width*3/4)'}} src={`https://i.ytimg.com/vi/${e.id}/mqdefault.jpg`} alt='' onClick={()=>props.goToVideoPage(e.id)}></img>
@@ -36,7 +36,7 @@ const Feedbar = (props) => {
                     </div>
                 </div>
             </div>
-            </>
+            )
         })}
         </div>
     </InfiniteScroll>

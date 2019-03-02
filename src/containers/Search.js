@@ -21,7 +21,7 @@ class Search extends Component {
                 videoDefinition: 'high',
                 type: 'video',
                 videoEmbeddable: 'true',
-                key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
+                key: 'AIzaSyDzrhVSoNSorn64sSP1kp34zkCG9T2GitU',//'AIzaSyDjQJDqIRITkKviY4lVH3eUF1NPcNrgGuA',
                 q: query,
                 pageToken: pageToken
             }
@@ -104,8 +104,8 @@ class Search extends Component {
     }
 
     render() {
-        if(this.state.isLoading) return <div class="spinner-border text-info" role="status">
-        <span class="sr-only">Loading...</span>
+        if(this.state.isLoading) return <div className="spinner-border text-info" role="status">
+        <span className="sr-only">Loading...</span>
       </div>
         else{ 
             // <h3>Search results for BLANK</h3>
