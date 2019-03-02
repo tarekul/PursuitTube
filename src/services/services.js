@@ -260,7 +260,7 @@ class Services {
     deleteHistory = userName => {
         const historyObj = JSON.parse(this.getHistory());
         delete historyObj[userName];
-        localStorage.setItem('history', historyObj);
+        localStorage.setItem('history', JSON.stringify(historyObj));
     }
 }
 
