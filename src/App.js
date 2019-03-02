@@ -6,6 +6,7 @@ import Video from './containers/Video';
 import Search from './containers/Search';
 import Userlist from './containers/UserList';
 import FeedList from './containers/FeedList';
+import History from './containers/History'
 import { Route } from 'react-router-dom'
 
 
@@ -21,6 +22,7 @@ class App extends Component {
         <Route path='/search/:search_term' component={Search}/>
         <Route path='/userlist' exact component={Userlist}/>
         <Route path='/feedlist' exact component={FeedList}/>
+        <Route path='/history' exact component={History}/>
       </>
     );
   }

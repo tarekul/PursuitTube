@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import Feedbar from '../components/homecomponents/Feedbar'
 import Feedlist from '../components/homecomponents/Feedlist'
 import Header from '../components/homecomponents/Header'
@@ -55,7 +55,7 @@ class Home extends Component {
             url: 'https://www.googleapis.com/youtube/v3/search',
             params: {
               part: 'snippet',
-              maxResults: 8,
+              maxResults: 10,
               videoDefinition: 'high',
               type: 'video',
               videoEmbeddable: 'true',
