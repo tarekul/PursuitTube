@@ -135,7 +135,11 @@ class Video extends Component {
                         {this.checkRecommendations()}
                     </div>
                 </div>
-                <Comments id={this.state.id}/>
+                <div className='row'>
+                    <div className='col col-6 comments_container'>
+                    <Comments id={this.state.id}/>
+                    </div>
+                </div>
             </>
         );
     }
