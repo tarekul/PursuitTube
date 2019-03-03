@@ -129,13 +129,13 @@ class Video extends Component {
                             <div className='col'>{this.state.snippet.description}</div>
                         </div>
                         <br></br>
-                        <Comments id={this.state.id}/>
                     </div>
                     <div className='col col-5 suggest_container'>
                         <h5 className='header_rec'>Recommended For You</h5>
                         {this.checkRecommendations()}
                     </div>
                 </div>
+                <Comments id={this.state.id}/>
             </>
         );
     }
