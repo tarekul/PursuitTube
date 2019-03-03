@@ -15,7 +15,7 @@ Video app that emulates basic **YouTube** functionality, based on **YouTube API*
 
 ## Screenshots
 * **Home Page:**
-	![Home](/Users/joserodriguez/Documents/pursuitCore/UNIT4/labs/PursuitTube/assets/homepage.png)
+	![Home](./assets/homepage.png)
 	
 * **User Page:**
 	![User](./assets/user.png)
