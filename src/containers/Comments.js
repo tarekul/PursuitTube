@@ -10,7 +10,7 @@ class Comments extends Component {
 
         this.state = {
             id: props.match.params.video_id,
-            key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',
+            key: 'AIzaSyAxOwb4BvlFibcxm6BT_8aSbN9yxVzq67w',
             comments: []
         }
 
