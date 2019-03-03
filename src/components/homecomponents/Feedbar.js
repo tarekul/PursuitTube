@@ -38,7 +38,7 @@ const Feedbar = (props) => {
         :   <div>
                 {feedName}
                 <div className='homeRow'>
-                    <div style={{"maxHeight":"400px", "overflow":"auto"}}>
+                    <div style={{"maxHeight":"400px", "overflow":"auto", 'border':'solid black 1px'}}>
                         <div className='homeRow'>
                             {videoInfo.map((e,i)=>{
                                  return (

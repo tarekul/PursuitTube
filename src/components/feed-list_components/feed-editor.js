@@ -34,7 +34,7 @@ class FeedEditor extends Component {
 
     render() {
         return(
-
+            <div className='col col-6'>
                 <div className="card" style={{width: "18rem"}}>
                     <ul className="list-group list-group-flush">
                       {
@@ -60,6 +60,7 @@ class FeedEditor extends Component {
                       }
                     </ul>
                 </div> 
+            </div>
         )
     }
 }
