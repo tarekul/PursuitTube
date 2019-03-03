@@ -22,7 +22,7 @@ class Video extends Component {
             url: 'https://www.googleapis.com/youtube/v3/videos',
             params: {
                 part: 'id,snippet,statistics',
-                key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',
+                key: 'AIzaSyA4ubJgvyUX269rBhXMyQTL_MR0wWPfRbg',
                 id: id
             }
         })
@@ -129,11 +129,15 @@ class Video extends Component {
                             <div className='col'>{this.state.snippet.description}</div>
                         </div>
                         <br></br>
-                        <Comments id={this.state.id}/>
                     </div>
                     <div className='col col-5 suggest_container'>
                         <h5 className='header_rec'>Recommended For You</h5>
                         {this.checkRecommendations()}
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col col-6 comments_container'>
+                    <Comments id={this.state.id}/>
                     </div>
                 </div>
             </>
