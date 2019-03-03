@@ -45,7 +45,7 @@ class Home extends Component {
     if(!feed){
       feed = [{feedName:'',nextPageToken:'',videoInfo: []}]
     }
-    feed = feed.map((e, i)=>{
+    feed = feed.map((e)=>{
       return {feedName: e, nextPageToken:'', videoInfo: []}
     })
     this.setState({name: activeUser, feed: feed})
@@ -106,7 +106,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <div className='homeRow' style={{'justifyContent':'center'}}>
+        <div className='homeRow' style={{'justifyContent':'center', 'paddingBottom':'40px'}}>
           <div className='homeCol-9'>
             <div className='homeRow'>
               <div className='homeCol-12 center'>
@@ -114,8 +114,10 @@ class Home extends Component {
               </div>
             </div>
             <div className='homeRow'>
-              <div className='homeCol-4'>
+              <div className='homeCol-2'>
                 <Feedlist feed={this.state.feed} />
+              </div>
+              <div className='homeCol-2'>
               </div>
               <div className='homeCol-8'>
                 {this.state.feed.map((feed, i) => {
