@@ -23,7 +23,7 @@ class Home extends Component {
       url: 'https://www.googleapis.com/youtube/v3/search',
       params: {
         part: 'snippet',
-        maxResults: 1,
+        maxResults: 8,
         videoDefinition: 'high',
         type: 'video',
         videoEmbeddable: 'true',

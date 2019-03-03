@@ -46,8 +46,6 @@
     padding-bottom: 20px;
     max-height: 200px;
     overflow: scroll;
-    border-color: lightgrey;
     border-radius: 5px;
-    border: solid lightgrey;
     border-width: 1px;
 }
