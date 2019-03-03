@@ -27,7 +27,7 @@ class Home extends Component {
         videoDefinition: 'high',
         type: 'video',
         videoEmbeddable: 'true',
-        key: 'AIzaSyCb9A4kjrypWw84UxCN6AwnagElm_90OlU',
+        key: 'AIzaSyA4ubJgvyUX269rBhXMyQTL_MR0wWPfRbg',
         q: searchTerm,
         pageToken: pageToken
       }

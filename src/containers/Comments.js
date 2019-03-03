@@ -10,7 +10,7 @@ class Comments extends Component {
 
         this.state = {
             id: props.match.params.video_id,
-            key: 'AIzaSyDeTfhlCohwwrwgaOm4Hso37sclFReUkoY',
+            key: 'AIzaSyAxOwb4BvlFibcxm6BT_8aSbN9yxVzq67w',
             comments: []
         }
 
@@ -59,7 +59,7 @@ class Comments extends Component {
                                 <span className='display_name'>{this.state.comments[i].snippet.topLevelComment.snippet.authorDisplayName}</span>
                                 <span className='publish_date'>{moment(this.state.comments[i].snippet.topLevelComment.snippet.publishedAt).fromNow()}</span>
                             </div>
-                        <div className='row'><span>{this.state.comments[i].snippet.topLevelComment.snippet.textOriginal}</span></div>
+                        <div className='row comnt_text'>{this.state.comments[i].snippet.topLevelComment.snippet.textOriginal}</div>
                         <div className='col'>
                         <div className='row replies' key={i}>
                             <div>
