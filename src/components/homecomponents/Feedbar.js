@@ -7,24 +7,26 @@ const Feedbar = (props) => {
         (videoInfo.length < 1) ? 
         <>
         <div>
+            <div style={{'color':'darkblue','marginTop':'10px','marginBottom':'10px'}}>
             {feedName}
+            </div>
             <div className='homeRow'>
                 <div style={{"maxHeight":"400px", "overflow":"auto"}}>
                     <div className='homeRow'>
                         {[1,2,3,4,5,6,7,8].map((e,i)=>{
                              return (
                             <div className='homeCol-3'  key={i}> 
-                                <div className='homeRow' >
+                                <div className='homeRow' style={{'paddingLeft':'5px', 'paddingTop':'5px' ,'paddingRight':'5px'}}>
                                         <div className='homeCol-12'>
-                                            <img style={{'width':'100%','height':'calc(width*3/4)'}} src={"https://media.wired.com/photos/592722c1af95806129f51b71/master/pass/MIT-Web-Loading.jpg"} alt='' />
+                                            <img className='video' style={{'width':'100%','height':'calc(width*3/4)',}} src={"https://media.wired.com/photos/592722c1af95806129f51b71/master/pass/MIT-Web-Loading.jpg"} alt='' />
                                         </div>
-                                        <div className='homeCol-12 videoName'>
+                                        <div className='homeCol-12 videoName'style={{'color':'darkblue',}}>
                                                 {'title'}
                                         </div>
-                                        <div className='homeCol-12'>
+                                        <div className='homeCol-12' style={{'color':'darkblue',}}>
                                                 {'channel name'}
                                         </div>
-                                        <div className='homeCol-12'>
+                                        <div className='homeCol-12' style={{'color':'darkblue',}}>
                                             {'time posted'}
                                         </div>
                                     </div>
@@ -38,22 +40,22 @@ const Feedbar = (props) => {
         :   <div>
                 {feedName}
                 <div className='homeRow'>
-                    <div style={{"maxHeight":"400px", "overflow":"auto", 'border':'solid black 1px'}}>
+                    <div style={{"maxHeight":"400px", "overflow":"auto"}}>
                         <div className='homeRow'>
                             {videoInfo.map((e,i)=>{
                                  return (
                                 <div className='homeCol-3'  key={i}> 
-                                    <div className='homeRow' >
+                                    <div className='homeRow' style={{'paddingLeft':'5px', 'paddingTop':'5px' ,'paddingRight':'5px'}}>
                                         <div className='homeCol-12'>
-                                            <img style={{'width':'100%','height':'calc(width*3/4)'}} src={`https://i.ytimg.com/vi/${e.id}/mqdefault.jpg`} alt='' onClick={()=>props.goToVideoPage(e.id)} />
+                                            <img className='video' style={{'width':'100%','height':'calc(width*3/4)'}} src={`https://i.ytimg.com/vi/${e.id}/mqdefault.jpg`} alt='' onClick={()=>props.goToVideoPage(e.id)} />
                                         </div>
-                                        <div className='homeCol-12 videoName'>
+                                        <div className='homeCol-12 videoName' style={{'color':'darkblue',}}>
                                                 {e.title}
                                         </div>
-                                        <div className='homeCol-12'>
+                                        <div className='homeCol-12' style={{'color':'darkblue',}}>
                                                 {e.channelName}
                                         </div>
-                                        <div className='homeCol-12'>
+                                        <div className='homeCol-12' style={{'color':'darkblue',}}>
                                                 {e.timePosted}
                                         </div>
                                     </div>
@@ -65,7 +67,7 @@ const Feedbar = (props) => {
             </div>
     }
     <div>
-        <button onClick={()=>props.loadMoreVideos(props.value)}>load more videos...</button>
+        <button className='buttonHover' style={{'marginTop':'5px'}}  onClick={()=>props.loadMoreVideos(props.value)}>load more videos...</button>
     </div>
     </>
 }

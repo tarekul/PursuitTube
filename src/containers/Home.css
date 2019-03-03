@@ -5,55 +5,55 @@
 .homeRow {
     display: flex;
     flex-wrap: wrap;
-    width: calc((100% - 6px))
+    width: calc((100%))
 }
 
 .homeCol {
-    width: calc((100% - 2px)/12)
+    width: calc((100%)/12)
 }
 
 .homeCol-2 {
-    width: calc((100% - 2px)/12*2)
+    width: calc((100%)/12*2)
 }
 
 .homeCol-3 {
-    width: calc((100% - 2px)/12*3)
+    width: calc((100%)/12*3)
 }
 
 .homeCol-4 {
-    width: calc((100% - 2px)/12*4)
+    width: calc((100%)/12*4)
 }
 
 .homeCol-5 {
-    width: calc((100% - 2px)/12*5)
+    width: calc((100%)/12*5)
 }
 
 .homeCol-6 {
-    width: calc((100% - 2px)/12*6)
+    width: calc((100%)/12*6)
 }
 
 .homeCol-7 {
-    width: calc((100% - 2px)/12*7)
+    width: calc((100%)/12*7)
 }
 
 .homeCol-8 {
-    width: calc((100% - 2px)/12*8)
+    width: calc((100%)/12*8)
 }
 
 .homeCol-9 {
-    width: calc((100% - 2px)/12*9)
+    width: calc((100%)/12*9)
 }
 
 .homeCol-10 {
-    width: calc((100% - 2px)/12*10)
+    width: calc((100%)/12*10)
 }
 
 .homeCol-11 {
-    width: calc((100% - 2px)/12*11)
+    width: calc((100%)/12*11)
 }
 
 .homeCol-12 {
-    width: calc((100% - 2px)/12*12)
+    width: calc((100%)/12*12)
 }
 
 /* Styling */
@@ -69,4 +69,26 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+ }
+
+ .headerStyle{
+     background-color: #f8f9fa!important;
+     min-height: 100px;
+     color: darkblue;
+ }
+
+.buttonHover{
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid #28a745 2px;
+    color: #28a745
+}
+
+ .buttonHover:hover {
+    background-color: #28a745;
+    color: white;
+ }
+
+ .video:hover{
+    cursor: pointer;
  }
