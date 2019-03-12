@@ -1,4 +1,4 @@
-# PursuitTube qiu was here
+# PursuitTube
 
 Video app that emulates basic **YouTube** functionality, based on **YouTube API**. Built using **JavaScript**, **HTML**, **CSS**. Also saves the current state of the app by implementantion of the browser's Local Storage.
 
